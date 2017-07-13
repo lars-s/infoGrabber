@@ -1,0 +1,574 @@
+[
+  {
+    "link": "/index/AKH",
+    "edition": "Amonkhet"
+  },
+  {
+    "link": "/index/AER",
+    "edition": "Aether Revolt"
+  },
+  {
+    "link": "/index/KLD",
+    "edition": "Kaladesh"
+  },
+  {
+    "link": "/index/EMN",
+    "edition": "Eldritch Moon"
+  },
+  {
+    "link": "/index/SOI",
+    "edition": "Shadows over Innistrad"
+  },
+  {
+    "link": "/index/OGW",
+    "edition": "Oath of the Gatewatch"
+  },
+  {
+    "link": "/index/BFZ",
+    "edition": "Battle for Zendikar"
+  },
+  {
+    "link": "/index/MM3",
+    "edition": "Modern Masters 2017"
+  },
+  {
+    "link": "/index/MM2",
+    "edition": "Modern Masters 2015"
+  },
+  {
+    "link": "/index/MD1",
+    "edition": "Modern Event Deck"
+  },
+  {
+    "link": "/index/MMA",
+    "edition": "Modern Masters"
+  },
+  {
+    "link": "/index/ORI",
+    "edition": "Magic Origins"
+  },
+  {
+    "link": "/index/M15",
+    "edition": "Magic 2015"
+  },
+  {
+    "link": "/index/M14",
+    "edition": "Magic 2014"
+  },
+  {
+    "link": "/index/M13",
+    "edition": "Magic 2013"
+  },
+  {
+    "link": "/index/M12",
+    "edition": "Magic 2012"
+  },
+  {
+    "link": "/index/M11",
+    "edition": "Magic 2011"
+  },
+  {
+    "link": "/index/M10",
+    "edition": "Magic 2010"
+  },
+  {
+    "link": "/index/10E",
+    "edition": "10th Edition"
+  },
+  {
+    "link": "/index/9ED",
+    "edition": "9th Edition"
+  },
+  {
+    "link": "/index/8ED",
+    "edition": "8th Edition"
+  },
+  {
+    "link": "/index/DTK",
+    "edition": "Dragons of Tarkir"
+  },
+  {
+    "link": "/index/FRF",
+    "edition": "Fate Reforged"
+  },
+  {
+    "link": "/index/KTK",
+    "edition": "Khans of Tarkir"
+  },
+  {
+    "link": "/index/JOU",
+    "edition": "Journey into Nyx"
+  },
+  {
+    "link": "/index/BNG",
+    "edition": "Born of the Gods"
+  },
+  {
+    "link": "/index/THS",
+    "edition": "Theros"
+  },
+  {
+    "link": "/index/DGM",
+    "edition": "Dragon's Maze"
+  },
+  {
+    "link": "/index/GTC",
+    "edition": "Gatecrash"
+  },
+  {
+    "link": "/index/RTR",
+    "edition": "Return to Ravnica"
+  },
+  {
+    "link": "/index/AVR",
+    "edition": "Avacyn Restored"
+  },
+  {
+    "link": "/index/DKA",
+    "edition": "Dark Ascension"
+  },
+  {
+    "link": "/index/ISD",
+    "edition": "Innistrad"
+  },
+  {
+    "link": "/index/NPH",
+    "edition": "New Phyrexia"
+  },
+  {
+    "link": "/index/MBS",
+    "edition": "Mirrodin Besieged"
+  },
+  {
+    "link": "/index/SOM",
+    "edition": "Scars of Mirrodin"
+  },
+  {
+    "link": "/index/ROE",
+    "edition": "Rise of the Eldrazi"
+  },
+  {
+    "link": "/index/WWK",
+    "edition": "Worldwake"
+  },
+  {
+    "link": "/index/ZEN",
+    "edition": "Zendikar"
+  },
+  {
+    "link": "/index/ARB",
+    "edition": "Alara Reborn"
+  },
+  {
+    "link": "/index/CON",
+    "edition": "Conflux"
+  },
+  {
+    "link": "/index/ALA",
+    "edition": "Shards of Alara"
+  },
+  {
+    "link": "/index/EVE",
+    "edition": "Eventide"
+  },
+  {
+    "link": "/index/SHM",
+    "edition": "Shadowmoor"
+  },
+  {
+    "link": "/index/MOR",
+    "edition": "Morningtide"
+  },
+  {
+    "link": "/index/LRW",
+    "edition": "Lorwyn"
+  },
+  {
+    "link": "/index/FUT",
+    "edition": "Future Sight"
+  },
+  {
+    "link": "/index/PLC",
+    "edition": "Planar Chaos"
+  },
+  {
+    "link": "/index/TSP",
+    "edition": "Time Spiral"
+  },
+  {
+    "link": "/index/TSB",
+    "edition": "Timeshifted"
+  },
+  {
+    "link": "/index/CSP",
+    "edition": "Coldsnap"
+  },
+  {
+    "link": "/index/DIS",
+    "edition": "Dissension"
+  },
+  {
+    "link": "/index/GPT",
+    "edition": "Guildpact"
+  },
+  {
+    "link": "/index/RAV",
+    "edition": "Ravnica"
+  },
+  {
+    "link": "/index/SOK",
+    "edition": "Saviors of Kamigawa"
+  },
+  {
+    "link": "/index/BOK",
+    "edition": "Betrayers of Kamigawa"
+  },
+  {
+    "link": "/index/CHK",
+    "edition": "Champions of Kamigawa"
+  },
+  {
+    "link": "/index/5DN",
+    "edition": "Fifth Dawn"
+  },
+  {
+    "link": "/index/DST",
+    "edition": "Darksteel"
+  },
+  {
+    "link": "/index/MRD",
+    "edition": "Mirrodin"
+  },
+  {
+    "link": "/index/7E",
+    "edition": "7th Edition"
+  },
+  {
+    "link": "/index/6ED",
+    "edition": "6th Edition"
+  },
+  {
+    "link": "/index/5ED",
+    "edition": "5th Edition"
+  },
+  {
+    "link": "/index/4ED",
+    "edition": "4th Edition"
+  },
+  {
+    "link": "/index/3ED",
+    "edition": "Revised"
+  },
+  {
+    "link": "/index/2ED",
+    "edition": "Unlimited"
+  },
+  {
+    "link": "/index/LEB",
+    "edition": "Beta"
+  },
+  {
+    "link": "/index/LEA",
+    "edition": "Alpha"
+  },
+  {
+    "link": "/index/SCG",
+    "edition": "Scourge"
+  },
+  {
+    "link": "/index/LGN",
+    "edition": "Legions"
+  },
+  {
+    "link": "/index/ONS",
+    "edition": "Onslaught"
+  },
+  {
+    "link": "/index/JUD",
+    "edition": "Judgment"
+  },
+  {
+    "link": "/index/TOR",
+    "edition": "Torment"
+  },
+  {
+    "link": "/index/OD",
+    "edition": "Odyssey"
+  },
+  {
+    "link": "/index/AP",
+    "edition": "Apocalypse"
+  },
+  {
+    "link": "/index/PS",
+    "edition": "Planeshift"
+  },
+  {
+    "link": "/index/IN",
+    "edition": "Invasion"
+  },
+  {
+    "link": "/index/PR",
+    "edition": "Prophecy"
+  },
+  {
+    "link": "/index/NE",
+    "edition": "Nemesis"
+  },
+  {
+    "link": "/index/MM",
+    "edition": "Mercadian Masques"
+  },
+  {
+    "link": "/index/UD",
+    "edition": "Urza's Destiny"
+  },
+  {
+    "link": "/index/UL",
+    "edition": "Urza's Legacy"
+  },
+  {
+    "link": "/index/UZ",
+    "edition": "Urza's Saga"
+  },
+  {
+    "link": "/index/EX",
+    "edition": "Exodus"
+  },
+  {
+    "link": "/index/ST",
+    "edition": "Stronghold"
+  },
+  {
+    "link": "/index/TE",
+    "edition": "Tempest"
+  },
+  {
+    "link": "/index/WL",
+    "edition": "Weatherlight"
+  },
+  {
+    "link": "/index/VI",
+    "edition": "Visions"
+  },
+  {
+    "link": "/index/MI",
+    "edition": "Mirage"
+  },
+  {
+    "link": "/index/CSP",
+    "edition": "Coldsnap"
+  },
+  {
+    "link": "/index/ALL",
+    "edition": "Alliances"
+  },
+  {
+    "link": "/index/HML",
+    "edition": "Homelands"
+  },
+  {
+    "link": "/index/ICE",
+    "edition": "Ice Age"
+  },
+  {
+    "link": "/index/FEM",
+    "edition": "Fallen Empires"
+  },
+  {
+    "link": "/index/DRK",
+    "edition": "The Dark"
+  },
+  {
+    "link": "/index/LEG",
+    "edition": "Legends"
+  },
+  {
+    "link": "/index/ATQ",
+    "edition": "Antiquities"
+  },
+  {
+    "link": "/index/ARN",
+    "edition": "Arabian Nights"
+  },
+  {
+    "link": "/index/EMA",
+    "edition": "Eternal Masters"
+  },
+  {
+    "link": "/index/POR",
+    "edition": "Portal"
+  },
+  {
+    "link": "/index/PO2",
+    "edition": "Portal Second Age"
+  },
+  {
+    "link": "/index/PTK",
+    "edition": "Portal Three Kingdoms"
+  },
+  {
+    "link": "/index/CMA",
+    "edition": "Commander Anthology"
+  },
+  {
+    "link": "/index/C16",
+    "edition": "Commander 2016"
+  },
+  {
+    "link": "/index/C15",
+    "edition": "Commander 2015"
+  },
+  {
+    "link": "/index/C14",
+    "edition": "Commander 2014"
+  },
+  {
+    "link": "/index/C13",
+    "edition": "Commander 2013"
+  },
+  {
+    "link": "/index/CMD",
+    "edition": "Commander"
+  },
+  {
+    "link": "/index/CN2",
+    "edition": "Conspiracy: Take the Crown"
+  },
+  {
+    "link": "/index/CNS",
+    "edition": "Conspiracy"
+  },
+  {
+    "link": "/index/DDS",
+    "edition": "DD: Mind vs. Might"
+  },
+  {
+    "link": "/index/DD3_DVD",
+    "edition": "DD: Anthology"
+  },
+  {
+    "link": "/index/DD3_EVG",
+    "edition": "DD: Anthology"
+  },
+  {
+    "link": "/index/DD3_GVL",
+    "edition": "DD: Anthology"
+  },
+  {
+    "link": "/index/DD3_JVC",
+    "edition": "DD: Anthology"
+  },
+  {
+    "link": "/index/DDR",
+    "edition": "DD: Nissa vs. Ob Nixilis"
+  },
+  {
+    "link": "/index/DDQ",
+    "edition": "DD: Blessed vs Cursed"
+  },
+  {
+    "link": "/index/DDP",
+    "edition": "DD: Zendikar vs. Eldrazi"
+  },
+  {
+    "link": "/index/DDO",
+    "edition": "DD: Elspeth vs. Kiora"
+  },
+  {
+    "link": "/index/DDN",
+    "edition": "DD: Speed vs. Cunning"
+  },
+  {
+    "link": "/index/DDM",
+    "edition": "DD: Jace vs. Vraska"
+  },
+  {
+    "link": "/index/DDL",
+    "edition": "DD: Heroes vs. Monsters"
+  },
+  {
+    "link": "/index/DDK",
+    "edition": "DD: Sorin vs. Tibalt"
+  },
+  {
+    "link": "/index/DDJ",
+    "edition": "DD: Izzet vs. Golgari"
+  },
+  {
+    "link": "/index/DDI",
+    "edition": "DD: Venser vs. Koth"
+  },
+  {
+    "link": "/index/DDH",
+    "edition": "DD: Ajani vs. Nicol Bolas"
+  },
+  {
+    "link": "/index/DDG",
+    "edition": "DD: Knights vs. Dragons"
+  },
+  {
+    "link": "/index/DDF",
+    "edition": "DD: Elspeth vs. Tezzeret"
+  },
+  {
+    "link": "/index/DDE",
+    "edition": "DD: Phyrexia vs. the Coalition"
+  },
+  {
+    "link": "/index/DDD",
+    "edition": "DD: Garruk vs. Liliana"
+  },
+  {
+    "link": "/index/DDC",
+    "edition": "DD: Divine vs. Demonic"
+  },
+  {
+    "link": "/index/DD2",
+    "edition": "DD: Jace vs. Chandra"
+  },
+  {
+    "link": "/index/EVG",
+    "edition": "DD: Elves vs. Goblins"
+  },
+  {
+    "link": "/index/PC1",
+    "edition": "Planechase"
+  },
+  {
+    "link": "/index/PC2",
+    "edition": "Planechase 2012"
+  },
+  {
+    "link": "/index/PCA",
+    "edition": "Planechase Anthology"
+  },
+  {
+    "link": "/index/PD3",
+    "edition": "PDS: Graveborn"
+  },
+  {
+    "link": "/index/PD2",
+    "edition": "PDS: Fire and Lightning"
+  },
+  {
+    "link": "/index/H09",
+    "edition": "PDS: Slivers"
+  },
+  {
+    "link": "/index/E01",
+    "edition": "Archenemy: Nicol Bolas"
+  },
+  {
+    "link": "/index/ARC",
+    "edition": "Archenemy"
+  },
+  {
+    "link": "/index/ATH",
+    "edition": "Anthologies"
+  },
+  {
+    "link": "/index/CHR",
+    "edition": "Chronicles"
+  }
+]
