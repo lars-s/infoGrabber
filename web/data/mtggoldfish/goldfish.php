@@ -4,21 +4,33 @@ function grabLinks()
 {
     $baseURL = "https://www.mtggoldfish.com";
     $basePath = "data/mtggoldfish/result";
+    $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
 
     $goldfishData = file_get_contents("data/mtggoldfish/src/goldfish_sets.json");
     $goldfishDataObj = json_decode($goldfishData);
 
-
+//    $dataObj = $goldfishDataObj[0];
     foreach ($goldfishDataObj as $dataObj) {
         $link = $baseURL . $dataObj->link;
 
         $url = $link;
         $handle = curl_init($url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-        $html = curl_exec($handle);
+        curl_setopt($handle, CURLOPT_USERAGENT, $agent);
+
+        $response = curl_exec($handle);
+        if ($response === false) {
+            $response = curl_error($handle);
+            echo stripslashes($response);
+            return false;
+        } else {
+            $html = $response;
+        }
+
         libxml_use_internal_errors(true); // Prevent HTML errors from displaying
         $doc = new DOMDocument();
         $doc->loadHTML($html);
+        curl_close($handle);
 
         $tables = $doc->getElementsByTagName("table");
 
@@ -47,8 +59,8 @@ function grabLinks()
                 "price" => $cardParsed[4]
             ];
 
-            $i+=1;
-            if ($i>$maxCount) {
+            $i += 1;
+            if ($i > $maxCount) {
                 $i = 1;
                 break;
             }
