@@ -3,6 +3,8 @@
 function grabLinksM($src)
 {
     $baseURL = "https://www.magiccardmarket.eu/Products/Singles/--set--?sortBy=lowPrice&sortDir=desc&view=list";
+    $baseURLNext = "https://www.magiccardmarket.eu/Products/Singles/--set--?sortBy=lowPrice&sortDir=desc&view=list&resultsPage=1";
+
     $basePath = "data/magiccardmarket/result";
     $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
 
@@ -15,6 +17,7 @@ function grabLinksM($src)
     foreach ($setDataObj as $dataObj) {
         $setName = str_replace(" ", "+", $dataObj->edition);
         $link = str_replace("--set--", $setName, $baseURL);
+        $linkNext = str_replace("--set--", $setName, $baseURLNext);
         $setCode = $dataObj->code;
 
         $url = $link;
