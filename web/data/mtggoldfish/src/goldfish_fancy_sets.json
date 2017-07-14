@@ -139,5 +139,129 @@
   {
     "link": "/index/BRB",
     "edition": "Battle Royale Box Set"
+  },
+  {
+    "link": "/index/DDS",
+    "edition": "DD: Mind vs. Might"
+  },
+  {
+    "link": "/index/DD3_DVD",
+    "edition": "DD: Anthology"
+  },
+  {
+    "link": "/index/DD3_EVG",
+    "edition": "DD: Anthology"
+  },
+  {
+    "link": "/index/DD3_GVL",
+    "edition": "DD: Anthology"
+  },
+  {
+    "link": "/index/DD3_JVC",
+    "edition": "DD: Anthology"
+  },
+  {
+    "link": "/index/DDR",
+    "edition": "DD: Nissa vs. Ob Nixilis"
+  },
+  {
+    "link": "/index/DDQ",
+    "edition": "DD: Blessed vs Cursed"
+  },
+  {
+    "link": "/index/DDP",
+    "edition": "DD: Zendikar vs. Eldrazi"
+  },
+  {
+    "link": "/index/DDO",
+    "edition": "DD: Elspeth vs. Kiora"
+  },
+  {
+    "link": "/index/DDN",
+    "edition": "DD: Speed vs. Cunning"
+  },
+  {
+    "link": "/index/DDM",
+    "edition": "DD: Jace vs. Vraska"
+  },
+  {
+    "link": "/index/DDL",
+    "edition": "DD: Heroes vs. Monsters"
+  },
+  {
+    "link": "/index/DDK",
+    "edition": "DD: Sorin vs. Tibalt"
+  },
+  {
+    "link": "/index/DDJ",
+    "edition": "DD: Izzet vs. Golgari"
+  },
+  {
+    "link": "/index/DDI",
+    "edition": "DD: Venser vs. Koth"
+  },
+  {
+    "link": "/index/DDH",
+    "edition": "DD: Ajani vs. Nicol Bolas"
+  },
+  {
+    "link": "/index/DDG",
+    "edition": "DD: Knights vs. Dragons"
+  },
+  {
+    "link": "/index/DDF",
+    "edition": "DD: Elspeth vs. Tezzeret"
+  },
+  {
+    "link": "/index/DDE",
+    "edition": "DD: Phyrexia vs. the Coalition"
+  },
+  {
+    "link": "/index/DDD",
+    "edition": "DD: Garruk vs. Liliana"
+  },
+  {
+    "link": "/index/DDC",
+    "edition": "DD: Divine vs. Demonic"
+  },
+  {
+    "link": "/index/DD2",
+    "edition": "DD: Jace vs. Chandra"
+  },
+  {
+    "link": "/index/EVG",
+    "edition": "DD: Elves vs. Goblins"
+  },
+  {
+    "link": "/index/PC1",
+    "edition": "Planechase"
+  },
+  {
+    "link": "/index/PC2",
+    "edition": "Planechase 2012"
+  },
+  {
+    "link": "/index/PCA",
+    "edition": "Planechase Anthology"
+  },
+  {
+    "link": "/index/PD3",
+    "edition": "PDS: Graveborn"
+  },
+  {
+    "link": "/index/PD2",
+    "edition": "PDS: Fire and Lightning"
+  },
+  {
+    "link": "/index/H09",
+    "edition": "PDS: Slivers"
+  },
+  {
+    "link": "/index/E01",
+    "edition": "Archenemy: Nicol Bolas"
+  },
+  {
+    "link": "/index/ARC",
+    "edition": "Archenemy"
   }
 ]

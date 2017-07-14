@@ -1,0 +1,452 @@
+[
+  {
+    "link_mtggoldfish": "/index/AKH",
+    "edition": "Amonkhet",
+    "code": "AKH"
+  },
+  {
+    "link_mtggoldfish": "/index/AER",
+    "edition": "Aether Revolt"
+  },
+  {
+    "link_mtggoldfish": "/index/KLD",
+    "edition": "Kaladesh"
+  },
+  {
+    "link_mtggoldfish": "/index/EMN",
+    "edition": "Eldritch Moon"
+  },
+  {
+    "link_mtggoldfish": "/index/SOI",
+    "edition": "Shadows over Innistrad"
+  },
+  {
+    "link_mtggoldfish": "/index/OGW",
+    "edition": "Oath of the Gatewatch"
+  },
+  {
+    "link_mtggoldfish": "/index/BFZ",
+    "edition": "Battle for Zendikar"
+  },
+  {
+    "link_mtggoldfish": "/index/MM3",
+    "edition": "Modern Masters 2017"
+  },
+  {
+    "link_mtggoldfish": "/index/MM2",
+    "edition": "Modern Masters 2015"
+  },
+  {
+    "link_mtggoldfish": "/index/MD1",
+    "edition": "Modern Event Deck"
+  },
+  {
+    "link_mtggoldfish": "/index/MMA",
+    "edition": "Modern Masters"
+  },
+  {
+    "link_mtggoldfish": "/index/ORI",
+    "edition": "Magic Origins"
+  },
+  {
+    "link_mtggoldfish": "/index/M15",
+    "edition": "Magic 2015"
+  },
+  {
+    "link_mtggoldfish": "/index/M14",
+    "edition": "Magic 2014"
+  },
+  {
+    "link_mtggoldfish": "/index/M13",
+    "edition": "Magic 2013"
+  },
+  {
+    "link_mtggoldfish": "/index/M12",
+    "edition": "Magic 2012"
+  },
+  {
+    "link_mtggoldfish": "/index/M11",
+    "edition": "Magic 2011"
+  },
+  {
+    "link_mtggoldfish": "/index/M10",
+    "edition": "Magic 2010"
+  },
+  {
+    "link_mtggoldfish": "/index/10E",
+    "edition": "10th Edition"
+  },
+  {
+    "link_mtggoldfish": "/index/9ED",
+    "edition": "9th Edition"
+  },
+  {
+    "link_mtggoldfish": "/index/8ED",
+    "edition": "8th Edition"
+  },
+  {
+    "link_mtggoldfish": "/index/DTK",
+    "edition": "Dragons of Tarkir"
+  },
+  {
+    "link_mtggoldfish": "/index/FRF",
+    "edition": "Fate Reforged"
+  },
+  {
+    "link_mtggoldfish": "/index/KTK",
+    "edition": "Khans of Tarkir"
+  },
+  {
+    "link_mtggoldfish": "/index/JOU",
+    "edition": "Journey into Nyx"
+  },
+  {
+    "link_mtggoldfish": "/index/BNG",
+    "edition": "Born of the Gods"
+  },
+  {
+    "link_mtggoldfish": "/index/THS",
+    "edition": "Theros"
+  },
+  {
+    "link_mtggoldfish": "/index/DGM",
+    "edition": "Dragon's Maze"
+  },
+  {
+    "link_mtggoldfish": "/index/GTC",
+    "edition": "Gatecrash"
+  },
+  {
+    "link_mtggoldfish": "/index/RTR",
+    "edition": "Return to Ravnica"
+  },
+  {
+    "link_mtggoldfish": "/index/AVR",
+    "edition": "Avacyn Restored"
+  },
+  {
+    "link_mtggoldfish": "/index/DKA",
+    "edition": "Dark Ascension"
+  },
+  {
+    "link_mtggoldfish": "/index/ISD",
+    "edition": "Innistrad"
+  },
+  {
+    "link_mtggoldfish": "/index/NPH",
+    "edition": "New Phyrexia"
+  },
+  {
+    "link_mtggoldfish": "/index/MBS",
+    "edition": "Mirrodin Besieged"
+  },
+  {
+    "link_mtggoldfish": "/index/SOM",
+    "edition": "Scars of Mirrodin"
+  },
+  {
+    "link_mtggoldfish": "/index/ROE",
+    "edition": "Rise of the Eldrazi"
+  },
+  {
+    "link_mtggoldfish": "/index/WWK",
+    "edition": "Worldwake"
+  },
+  {
+    "link_mtggoldfish": "/index/ZEN",
+    "edition": "Zendikar"
+  },
+  {
+    "link_mtggoldfish": "/index/ARB",
+    "edition": "Alara Reborn"
+  },
+  {
+    "link_mtggoldfish": "/index/CON",
+    "edition": "Conflux"
+  },
+  {
+    "link_mtggoldfish": "/index/ALA",
+    "edition": "Shards of Alara"
+  },
+  {
+    "link_mtggoldfish": "/index/EVE",
+    "edition": "Eventide"
+  },
+  {
+    "link_mtggoldfish": "/index/SHM",
+    "edition": "Shadowmoor"
+  },
+  {
+    "link_mtggoldfish": "/index/MOR",
+    "edition": "Morningtide"
+  },
+  {
+    "link_mtggoldfish": "/index/LRW",
+    "edition": "Lorwyn"
+  },
+  {
+    "link_mtggoldfish": "/index/FUT",
+    "edition": "Future Sight"
+  },
+  {
+    "link_mtggoldfish": "/index/PLC",
+    "edition": "Planar Chaos"
+  },
+  {
+    "link_mtggoldfish": "/index/TSP",
+    "edition": "Time Spiral"
+  },
+  {
+    "link_mtggoldfish": "/index/TSB",
+    "edition": "Timeshifted"
+  },
+  {
+    "link_mtggoldfish": "/index/CSP",
+    "edition": "Coldsnap"
+  },
+  {
+    "link_mtggoldfish": "/index/DIS",
+    "edition": "Dissension"
+  },
+  {
+    "link_mtggoldfish": "/index/GPT",
+    "edition": "Guildpact"
+  },
+  {
+    "link_mtggoldfish": "/index/RAV",
+    "edition": "Ravnica"
+  },
+  {
+    "link_mtggoldfish": "/index/SOK",
+    "edition": "Saviors of Kamigawa"
+  },
+  {
+    "link_mtggoldfish": "/index/BOK",
+    "edition": "Betrayers of Kamigawa"
+  },
+  {
+    "link_mtggoldfish": "/index/CHK",
+    "edition": "Champions of Kamigawa"
+  },
+  {
+    "link_mtggoldfish": "/index/5DN",
+    "edition": "Fifth Dawn"
+  },
+  {
+    "link_mtggoldfish": "/index/DST",
+    "edition": "Darksteel"
+  },
+  {
+    "link_mtggoldfish": "/index/MRD",
+    "edition": "Mirrodin"
+  },
+  {
+    "link_mtggoldfish": "/index/7E",
+    "edition": "7th Edition"
+  },
+  {
+    "link_mtggoldfish": "/index/6ED",
+    "edition": "6th Edition"
+  },
+  {
+    "link_mtggoldfish": "/index/5ED",
+    "edition": "5th Edition"
+  },
+  {
+    "link_mtggoldfish": "/index/4ED",
+    "edition": "4th Edition"
+  },
+  {
+    "link_mtggoldfish": "/index/3ED",
+    "edition": "Revised"
+  },
+  {
+    "link_mtggoldfish": "/index/2ED",
+    "edition": "Unlimited"
+  },
+  {
+    "link_mtggoldfish": "/index/LEB",
+    "edition": "Beta"
+  },
+  {
+    "link_mtggoldfish": "/index/LEA",
+    "edition": "Alpha"
+  },
+  {
+    "link_mtggoldfish": "/index/SCG",
+    "edition": "Scourge"
+  },
+  {
+    "link_mtggoldfish": "/index/LGN",
+    "edition": "Legions"
+  },
+  {
+    "link_mtggoldfish": "/index/ONS",
+    "edition": "Onslaught"
+  },
+  {
+    "link_mtggoldfish": "/index/JUD",
+    "edition": "Judgment"
+  },
+  {
+    "link_mtggoldfish": "/index/TOR",
+    "edition": "Torment"
+  },
+  {
+    "link_mtggoldfish": "/index/OD",
+    "edition": "Odyssey"
+  },
+  {
+    "link_mtggoldfish": "/index/AP",
+    "edition": "Apocalypse"
+  },
+  {
+    "link_mtggoldfish": "/index/PS",
+    "edition": "Planeshift"
+  },
+  {
+    "link_mtggoldfish": "/index/IN",
+    "edition": "Invasion"
+  },
+  {
+    "link_mtggoldfish": "/index/PR",
+    "edition": "Prophecy"
+  },
+  {
+    "link_mtggoldfish": "/index/NE",
+    "edition": "Nemesis"
+  },
+  {
+    "link_mtggoldfish": "/index/MM",
+    "edition": "Mercadian Masques"
+  },
+  {
+    "link_mtggoldfish": "/index/UD",
+    "edition": "Urza's Destiny"
+  },
+  {
+    "link_mtggoldfish": "/index/UL",
+    "edition": "Urza's Legacy"
+  },
+  {
+    "link_mtggoldfish": "/index/UZ",
+    "edition": "Urza's Saga"
+  },
+  {
+    "link_mtggoldfish": "/index/EX",
+    "edition": "Exodus"
+  },
+  {
+    "link_mtggoldfish": "/index/ST",
+    "edition": "Stronghold"
+  },
+  {
+    "link_mtggoldfish": "/index/TE",
+    "edition": "Tempest"
+  },
+  {
+    "link_mtggoldfish": "/index/WL",
+    "edition": "Weatherlight"
+  },
+  {
+    "link_mtggoldfish": "/index/VI",
+    "edition": "Visions"
+  },
+  {
+    "link_mtggoldfish": "/index/MI",
+    "edition": "Mirage"
+  },
+  {
+    "link_mtggoldfish": "/index/CSP",
+    "edition": "Coldsnap"
+  },
+  {
+    "link_mtggoldfish": "/index/ALL",
+    "edition": "Alliances"
+  },
+  {
+    "link_mtggoldfish": "/index/HML",
+    "edition": "Homelands"
+  },
+  {
+    "link_mtggoldfish": "/index/ICE",
+    "edition": "Ice Age"
+  },
+  {
+    "link_mtggoldfish": "/index/FEM",
+    "edition": "Fallen Empires"
+  },
+  {
+    "link_mtggoldfish": "/index/DRK",
+    "edition": "The Dark"
+  },
+  {
+    "link_mtggoldfish": "/index/LEG",
+    "edition": "Legends"
+  },
+  {
+    "link_mtggoldfish": "/index/ATQ",
+    "edition": "Antiquities"
+  },
+  {
+    "link_mtggoldfish": "/index/ARN",
+    "edition": "Arabian Nights"
+  },
+  {
+    "link_mtggoldfish": "/index/EMA",
+    "edition": "Eternal Masters"
+  },
+  {
+    "link_mtggoldfish": "/index/POR",
+    "edition": "Portal"
+  },
+  {
+    "link_mtggoldfish": "/index/PO2",
+    "edition": "Portal Second Age"
+  },
+  {
+    "link_mtggoldfish": "/index/PTK",
+    "edition": "Portal Three Kingdoms",
+    "code": "PTK"
+  },
+  {
+    "link_mtggoldfish": "/index/CMA",
+    "edition": "Commander Anthology"
+  },
+  {
+    "link_mtggoldfish": "/index/C16",
+    "edition": "Commander 2016"
+  },
+  {
+    "link_mtggoldfish": "/index/C15",
+    "edition": "Commander 2015"
+  },
+  {
+    "link_mtggoldfish": "/index/C14",
+    "edition": "Commander 2014"
+  },
+  {
+    "link_mtggoldfish": "/index/C13",
+    "edition": "Commander 2013"
+  },
+  {
+    "link_mtggoldfish": "/index/CMD",
+    "edition": "Commander"
+  },
+  {
+    "link_mtggoldfish": "/index/CN2",
+    "edition": "Conspiracy: Take the Crown"
+  },
+  {
+    "link_mtggoldfish": "/index/CNS",
+    "edition": "Conspiracy"
+  },
+  {
+    "link_mtggoldfish": "/index/ATH",
+    "edition": "Anthologies"
+  },
+  {
+    "link_mtggoldfish": "/index/CHR",
+    "edition": "Chronicles"
+  }
+]

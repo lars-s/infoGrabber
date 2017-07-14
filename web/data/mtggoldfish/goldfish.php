@@ -1,17 +1,18 @@
 <?php
 
-function grabLinks()
+function grabLinks($src)
 {
     $baseURL = "https://www.mtggoldfish.com";
     $basePath = "data/mtggoldfish/result";
     $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
 
-    $goldfishData = file_get_contents("data/mtggoldfish/src/goldfish_sets.json");
+    $goldfishData = file_get_contents($src);
     $goldfishDataObj = json_decode($goldfishData);
 
 //    $dataObj = $goldfishDataObj[0];
+    $allCardsArray = [];
     foreach ($goldfishDataObj as $dataObj) {
-        $link = $baseURL . $dataObj->link;
+        $link = $baseURL . $dataObj->link_mtggoldfish;
 
         $url = $link;
         $handle = curl_init($url);
@@ -43,20 +44,31 @@ function grabLinks()
 
         $cardData = preg_replace('/(%)\n([A-Z])/', '\1|\2', $cardData);
         $cardData = preg_replace('/\R/', '', $cardData);
+
+        // Two letter set code
+        if (preg_match('/(\/)(PS|ON|OD|AP|IN|PR|NE|MM|UD|UL|UZ|EX|ST|TE|WL|VI|MI)$/', $link)) {
+            $cardData = preg_replace(
+                '/(PS|ON|OD|AP|IN|PR|NE|MM|UD|UL|UZ|EX|ST|TE|WL|VI|MI)/',
+                '\1X',
+                $cardData
+            );
+        }
+
+        $cardData = preg_replace('/([A-Z01234567890]{3})(Rare|Uncommon|Common|Mythic|Special|Bonus|Land)/', '\1', $cardData);
+        $cardData = preg_replace('/([A-Z1234567890]{3})(\d+.\d{2})/', '!\1!\2!', $cardData);
         $cardData = explode("|", $cardData);
 
         // Grab $maxCount cards from the set
-        $cardDataFinal = [];
         $maxCount = 40;
         $i = 1;
 
         foreach ($cardData as $card) {
-            preg_match("/(.*)([A-Z123456789]{3})([A-Z][a-z]*)(\d*.\d{2})/", $card, $cardParsed);
-            $cardDataFinal[] = [
-                "name" => $cardParsed[1],
-                "set" => $cardParsed[2],
-                "rarity" => $cardParsed[3],
-                "price" => $cardParsed[4]
+//            preg_match("/(.*[a-z])([A-Z123456789]{3})(\d*.\d{2})/", $card, $cardParsed);
+            $cardParsed = explode("!", $card);
+            $allCardsArray[] = [
+                "name" => $cardParsed[0],
+                "set" => $cardParsed[1],
+                "price" => $cardParsed[2]
             ];
 
             $i += 1;
@@ -65,12 +77,12 @@ function grabLinks()
                 break;
             }
         }
-
-        $now = getdate();
-        $fullPath = "$basePath/{$now["year"]}/{$now['month']}";
-        mkdir($fullPath, 0777, true);
-        file_put_contents("$fullPath/{$now['mday']}.json", json_encode($cardDataFinal), FILE_APPEND);
     }
+
+    $now = getdate();
+    $fullPath = "$basePath/{$now["year"]}/{$now['month']}";
+    mkdir($fullPath, 0777, true);
+    file_put_contents("$fullPath/{$now['mday']}.json", json_encode(array_values($allCardsArray)), FILE_APPEND);
 
     echo "finished";
 }
