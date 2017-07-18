@@ -72,8 +72,13 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
 
 function parseCartData(orderData) {
 	var parseData = '';
-	var shippingCost = '';
+	var shippingCost = $(".MKMShipmentSummary > tbody tr:nth-child(7)").find(".shipmentSummaryMoney").text();
+	var numberOfCards = parseInt($(".MKMShipmentSummary > tbody tr:nth-child(4)").find("td:nth-child(2)").text());
 	var bulkRareCost = 0, bulkFoilCost = 0, bulkRare = 0, bulkFoil = 0;
+
+	shippingCost = parseFloat(shippingCost.replace(",","."));
+
+	var extraCost = shippingCost / numberOfCards;
 
 	$(orderData).find(".MKMTable tbody tr").each(function() {
 	    var name = $(this).find("td:nth-child(4)").find("a").text();
@@ -88,11 +93,13 @@ function parseCartData(orderData) {
 	    	name += "*";
 	    }
 
-	    price = $(this).find(".Price div.nowrap").text();
+	    price = parseFloat($(this).find(".Price div.nowrap").text());
 	    price = parseFloat(price.replace(",", ".").replace(" €", ""));
 
 	    amount = $(this).find(".Amount div.itemAmount").text();
 	    amount = parseInt(amount.replace("x", ""));
+
+		price += extraCost*amount;
 
 	    if (parseFloat(price) <= bulkThreshold) {
 	    	if (foil) {
@@ -108,9 +115,6 @@ function parseCartData(orderData) {
 	    }
 	});
 
-	var obj = $(orderData).find(".shipmentSummaryMoney")[1];
-	shippingCost = $(obj).text();
-
 	if (bulkFoil > 0) {
 		parseData += bulkFoil + "\t" + "Bulk Foils" + "\t" + bulkFoilCost+ "\r\n";
 	}
@@ -118,8 +122,6 @@ function parseCartData(orderData) {
 	if (bulkRare > 0) {
 		parseData += bulkRare + "\t" + "Bulk Rares" + "\t" + bulkRareCost+ "\r\n";
 	}
-
-	parseData += "" + "\t" + "Porto" + "\t" + shippingCost.replace(",", ".").replace(" €", "");
 
 	copyTextToClipboard(parseData);
 	return parseData;
