@@ -68,7 +68,8 @@ function grabLinks($src)
             $allCardsArray[] = [
                 "name" => $cardParsed[0],
                 "set" => $cardParsed[1],
-                "price" => $cardParsed[2]
+                "price" => $cardParsed[2],
+                "foil" => 0
             ];
 
             $i += 1;

@@ -62,13 +62,14 @@ function grabLinksM($src)
                 $card[] = $tableCol;
             }
 
-            // Parse all cards into result array
+            // Parse all non-foil cards into result array
             if (isset($card[2]) && $card[2]->nodeValue !== "English Name") {
                 if (strpos($card[2]->nodeValue, "Token") === false) {
                     $allCardsArray[] = [
                         "name" => $card[2]->nodeValue,
                         "set" => $setCode,
-                        "price" => str_replace([",", ' €'], [".", ""], $card[5]->nodeValue)
+                        "price" => str_replace([",", ' €'], [".", ""], $card[5]->nodeValue),
+                        "foil" => 0
                     ];
                 }
             }
@@ -110,13 +111,14 @@ function grabLinksM($src)
                 $card[] = $tableCol;
             }
 
-            // Parse all cards into result array
+            // Parse all non-foil cards into result array
             if (isset($card[2]) && $card[2]->nodeValue !== "English Name") {
                 if (strpos($card[2]->nodeValue, "Token") === false) {
                     $allCardsArray[] = [
                         "name" => $card[2]->nodeValue,
                         "set" => $setCode,
-                        "price" => str_replace([",", ' €'], [".", ""], $card[5]->nodeValue)
+                        "price" => str_replace([",", ' €'], [".", ""], $card[5]->nodeValue),
+                        "foil" => 0
                     ];
                 }
             }
@@ -129,7 +131,7 @@ function grabLinksM($src)
     $now = getdate();
     $fullPath = "$basePath/{$now["year"]}/{$now['month']}";
     mkdir($fullPath, 0777, true);
-    file_put_contents("$fullPath/{$now['mday']}.json", json_encode(array_values($allCardsArray)), FILE_APPEND);
+    file_put_contents("$fullPath/{$now['mday']}.json", json_encode(array_values($allCardsArray)));
 
     echo "finished";
 }

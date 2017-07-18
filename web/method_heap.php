@@ -95,7 +95,9 @@ function getDetailedPrices($card)
 
     // add set to link
     $setName = getLongnameFromCode($card["code"]);;
-    $setName = str_replace([" ", ":", "'"], ["+", "", ""], $setName);
+    $find = [" ", ":", "'", "Commander+2013"];
+    $replace = ["+", "", "", "Commander+2013+Edition"];
+    $setName = str_replace($find, $replace, $setName);
     $link .= $setName . "/";
 
     // add card to link
@@ -138,4 +140,66 @@ function getDetailedPrices($card)
     }
 
     return $prices;
+}
+
+/**
+ * @param $conn db connection
+ * Create a todo.json file. Fill it with 1000 interesting buylist targets
+ */
+function createToDoList($conn)
+{
+    $fodder = getFodderList($conn);
+
+    $cardArray = [];
+    foreach ($fodder as $card) {
+        $cardArray[] = [
+            "name" => $card["cardname"],
+            "set" => $card["code"],
+            "foil" => $card["foil"]
+        ];
+    }
+
+    $jsonFile = json_encode($cardArray);
+    file_put_contents("todo.json", $jsonFile);
+}
+
+function popTodoList($conn)
+{
+    $jsonFile = file_get_contents("todo.json");
+    $cardArray = json_decode($jsonFile);
+
+    $card = [
+        "cardname" => $cardArray[0]->name,
+        "code" => $cardArray[0]->set,
+        "foil" => $cardArray[0]->foil
+    ];
+
+    $cardPrices = getDetailedPrices($card);
+
+    if (array_count_values($cardPrices) > 0) {
+        $query = "UPDATE cards SET";
+        $cleanName = str_replace("'", "\\'", $card['cardname']);
+
+        $i = 1;
+        foreach ($cardPrices as $colName => $value) {
+            if ($i > 1) {
+                $query .= ", ";
+            }
+            $query .= " $colName = '{$value}'";
+            $i++;
+        }
+
+        $query .= " WHERE cardname='{$cleanName}' AND code='{$card['code']}';\r\n";
+
+        if ($conn->query($query) === TRUE) {
+            echo "{$card['cardname']} from {$card['code']} updated. Query: {$query}\r\n";
+
+        } else {
+            echo "Error {$card['cardname']} aus {$card['code']} <br>" . $conn->error;
+        }
+    }
+
+    unset($cardArray[0]);
+    $jsonFile = json_encode(array_values($cardArray));
+    file_put_contents("todo.json", $jsonFile);
 }

@@ -9,10 +9,10 @@ function writeMKMJSONToDB($conn, $jsonFileSrc)
     $file = file_get_contents($jsonFileSrc);
     $cardsArray = json_decode($file);
 
-    $query = "INSERT INTO cards (cardname, code, price_avg_mkm, parseDate) VALUES ";
+    $query = "INSERT INTO cards (cardname, code, price_avg_mkm, parseDate, foil) VALUES ";
     foreach ($cardsArray as $card) {
         $cleanName = str_replace("'", "\\'", $card->name);
-        $query .= "('{$cleanName}', '{$card->set}', '{$card->price}', '{$date}'),\r\n";
+        $query .= "('{$cleanName}', '{$card->set}', '{$card->price}', '{$date}', '{$card->foil}'),\r\n";
     }
 
     // Replace last comma with a semicolon
@@ -46,7 +46,7 @@ function updateGoldfishJSONToDB($conn, $jsonFileSrc)
     foreach ($cardsArray as $card) {
         $cleanName = str_replace("'", "\\'", $card->name);
         $query = "UPDATE cards SET price_avg_mtggoldfish = '{$card->price}' " .
-            "WHERE cardname='{$cleanName}' AND code='{$card->set}'";
+            "WHERE cardname='{$cleanName}' AND code='{$card->set}' AND foil='{$card->foil}'";
         if ($conn->query($query) === TRUE) {
 
         } else {
@@ -66,9 +66,9 @@ function getFodderList($conn)
 //    $query = "SELECT cardname, code, price_avg_mkm, price_avg_mtggoldfish, (price_avg_mtggoldfish/2) / (price_avg_mkm*3) " .
 //        " as margin FROM cards WHERE (price_avg_mkm BETWEEN 0.5 AND 5) AND price_avg_mtggoldfish AND " .
 //        "(price_avg_mkm*3) < (price_avg_mtggoldfish/2) ORDER BY (price_avg_mtggoldfish/2) / (price_avg_mkm*3) DESC";
-    $query = "SELECT cardname, code, price_avg_mkm, price_avg_mtggoldfish, " .
+    $query = "SELECT cardname, foil, code, price_avg_mkm, price_avg_mtggoldfish, " .
         "(price_avg_mtggoldfish/2) / (price_avg_mkm*3) as margin FROM cards WHERE (price_avg_mkm BETWEEN 0.5 AND 50) " .
-        "AND (price_avg_mtggoldfish BETWEEN 0.5 AND 50) AND (buylist_ck IS null) ORDER BY (price_avg_mtggoldfish/2) / (price_avg_mkm*3) DESC LIMIT 400";
+        "AND (price_avg_mtggoldfish BETWEEN 0.5 AND 50) AND (buylist_ck IS null) ORDER BY (price_avg_mtggoldfish/2) / (price_avg_mkm*3) DESC LIMIT 1000";
     $result = $conn->query($query);
 
     return $result;
