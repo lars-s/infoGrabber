@@ -99,8 +99,6 @@ function parseCartData(orderData) {
 	    amount = $(this).find(".Amount div.itemAmount").text();
 	    amount = parseInt(amount.replace("x", ""));
 
-		price += extraCost*amount;
-
 	    if (parseFloat(price) <= bulkThreshold) {
 	    	if (foil) {
 	    		bulkFoil += 1*amount;
@@ -111,7 +109,7 @@ function parseCartData(orderData) {
 	    	}
 	    } else {
 	    	parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name +'")'
-	    					+ "\t" + price*amount + "\r\n";
+	    					+ "\t" + (price+extraCost)*amount + "\r\n";
 	    }
 	});
 
