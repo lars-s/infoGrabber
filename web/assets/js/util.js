@@ -102,10 +102,10 @@ function parseCartData(orderData) {
 	    if (parseFloat(price) <= bulkThreshold) {
 	    	if (foil) {
 	    		bulkFoil += 1*amount;
-	    		bulkFoilCost += price*amount;
+	    		bulkFoilCost += (price+extraCost)*amount;
 	    	} else {
 	    		bulkRare += 1*amount;
-	    		bulkRareCost += price*amount;
+	    		bulkRareCost += (price+extraCost)*amount;
 	    	}
 	    } else {
 	    	parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name +'")'
