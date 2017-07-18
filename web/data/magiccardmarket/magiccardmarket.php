@@ -20,8 +20,8 @@ function grabLinksM($src)
         $setName = str_replace([" ", ":", "'"], ["+", "%3A", "%27"], $dataObj->edition);
 
         // Fix the link with MKM quirks
-        $find = ["--set--", "Timeshifted?"];
-        $replace = [$setName, "Time+Spiral?idRarity=20&"];
+        $find = ["--set--", "Timeshifted?", "Revised+Edition"];
+        $replace = [$setName, "Time+Spiral?idRarity=20&", "Revised"];
 
         $link = str_replace($find, $replace, $baseURL);
 

@@ -44,14 +44,17 @@ function getDetailedPrices($card)
 {
     $prices = [];
 
-    // mkm
+    /*
+     * Get price trend from MKM
+     */
     $link = "https://www.magiccardmarket.eu/Products/Singles/";
 
     // add set to link
     $setName = getLongnameFromCode($card["code"]);
     $setName = str_replace([" ", ":", "'"], ["+", "%3A", "%27"], $setName);
-    $find = ["--set--"];
-    $replace = [$setName];
+
+    $find = ["--set--", "Revised+Edition"];
+    $replace = [$setName, "Revised"];
     $link .= str_replace($find, $replace, $setName) . "/";
 
     // add card to link
@@ -85,7 +88,9 @@ function getDetailedPrices($card)
 
     $prices["price_trend_mkm"] = $priceTrend;
 
-    // get buylists from goldfish
+    /*
+        Get buylists from goldfish
+    */
     $link = "https://www.mtggoldfish.com/price/";
 
     // add set to link
@@ -94,7 +99,7 @@ function getDetailedPrices($card)
     $link .= $setName . "/";
 
     // add card to link
-    $link .= str_replace([" ", ":", "'", ","], ["+", "%3A", "%27", "%2C"], $card["cardname"]);
+    $link .= str_replace([" ", ":", "'", ","], ["+", "", "", ""], $card["cardname"]);
 
     // init curl for goldfish
     $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
