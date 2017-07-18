@@ -16,7 +16,15 @@ function grabLinksM($src)
 //    $dataObj = $setDataObj[0];
     foreach ($setDataObj as $dataObj) {
         $setName = str_replace(" ", "+", $dataObj->edition);
-        $link = str_replace("--set--", $setName, $baseURL);
+
+        // Fix the link with MKM quirks
+        $find = ["--set--", "'", "Ravnica?", "4th+Edition", "5th+Edition", "6th+Edition", "7th+Edition", "8th+Edition",
+            "9th+Edition", "10th+Edition"];
+        $replace = [$setName, "%27", "Ravnica%3A+City+of+Guilds?", "Fourth+Edition", "Fifth+Edition", "Sixth+Edition",
+            "Seventh+Edition", "Eighth+Edition", "Ninth+Edition", "Tenth+Edition"];
+
+        $link = str_replace($find, $replace, $baseURL);
+
         $linkNext = str_replace("--set--", $setName, $baseURLNext);
         $setCode = $dataObj->code;
 
@@ -36,6 +44,60 @@ function grabLinksM($src)
 
         libxml_use_internal_errors(true); // Prevent HTML errors from displaying
         $doc = new DOMDocument();
+
+        // Check if set link was correctly built:
+        if ($html == '') {
+            echo "url: $url --- error with set: $setName \r\n";
+        }
+
+        $doc->loadHTML($html);
+        curl_close($handle);
+
+        $tableRows = $doc->getElementsByTagName("tr");
+
+        foreach ($tableRows as $row) {
+            // Transform nodes into array for easier parsing
+            $card = [];
+
+            foreach ($row->childNodes as $tableCol) {
+                $card[] = $tableCol;
+            }
+
+            // Parse all cards into result array
+            if (isset($card[2]) && $card[2]->nodeValue !== "English Name") {
+                if (strpos($card[2]->nodeValue, "Token") === false) {
+                    $allCardsArray[] = [
+                        "name" => $card[2]->nodeValue,
+                        "set" => $setCode,
+                        "price" => str_replace([",", ' €'], [".", ""], $card[5]->nodeValue)
+                    ];
+                }
+            }
+        }
+
+
+        // Results second page
+        $handle = curl_init($url . "&resultsPage=1");
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_USERAGENT, $agent);
+
+        $response = curl_exec($handle);
+        if ($response === false) {
+            $response = curl_error($handle);
+            echo stripslashes($response);
+            echo "$url";
+            return false;
+        } else {
+            $html = $response;
+        }
+        libxml_use_internal_errors(true); // Prevent HTML errors from displaying
+        $doc = new DOMDocument();
+
+        // Check if set link was correctly built:
+        if ($html == '') {
+            echo "url: $url --- error with set: $setName \r\n";
+        }
+
         $doc->loadHTML($html);
         curl_close($handle);
 

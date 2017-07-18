@@ -60,7 +60,7 @@ function updateGoldfishJSONToDB($servername, $username, $password, $dbname, $jso
     foreach ($cardsArray as $card) {
         $cleanName = str_replace("'", "\\'", $card->name);
         $query = "UPDATE cards SET price_avg_mtggoldfish = '{$card->price}' " .
-            "WHERE cardname='{$cleanName}' AND code='{$card->set}' AND parseDate='{$date}';";
+            "WHERE cardname='{$cleanName}' AND code='{$card->set}'";
         if ($conn->query($query) === TRUE) {
 
         } else {

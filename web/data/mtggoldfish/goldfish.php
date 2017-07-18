@@ -46,9 +46,9 @@ function grabLinks($src)
         $cardData = preg_replace('/\R/', '', $cardData);
 
         // Two letter set code
-        if (preg_match('/(\/)(PS|ON|OD|AP|IN|PR|NE|MM|UD|UL|UZ|EX|ST|TE|WL|VI|MI)$/', $link)) {
+        if (preg_match('/(\/)(PS|ON|OD|AP|IN|PR|NE|MM|UD|UL|UZ|EX|ST|TE|WL|VI|MI|7E)$/', $link)) {
             $cardData = preg_replace(
-                '/(PS|ON|OD|AP|IN|PR|NE|MM|UD|UL|UZ|EX|ST|TE|WL|VI|MI)/',
+                '/(PS|ON|OD|AP|IN|PR|NE|MM|UD|UL|UZ|EX|ST|TE|WL|VI|MI|7E)/',
                 '\1X',
                 $cardData
             );
@@ -59,7 +59,7 @@ function grabLinks($src)
         $cardData = explode("|", $cardData);
 
         // Grab $maxCount cards from the set
-        $maxCount = 40;
+        $maxCount = 80;
         $i = 1;
 
         foreach ($cardData as $card) {
