@@ -77,6 +77,9 @@ function grabLinks($src)
                 break;
             }
         }
+
+        // fair use delay
+        sleep(4);
     }
 
     $now = getdate();

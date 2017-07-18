@@ -20,3 +20,17 @@ function parseCodesFromMTGGoldfishLinks()
 
     file_put_contents("data/set_data_complete.json", json_encode(array_values($setDataArray)));
 }
+
+function setCodeToLongname($code) {
+    $setData = file_get_contents("data/set_data_complete.json");
+
+    $setDataArray = json_decode($setData);
+
+    foreach ($setDataArray as $set) {
+        if ($set->code == $code) {
+            return $set->edition;
+        }
+    }
+
+    return "ERROR; set name not found for $code";
+}

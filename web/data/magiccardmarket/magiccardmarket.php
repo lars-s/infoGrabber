@@ -1,5 +1,7 @@
 <?php
 
+@include "../../method_heap.php";
+
 function grabLinksM($src)
 {
     $baseURL = "https://www.magiccardmarket.eu/Products/Singles/--set--?sortBy=lowPrice&sortDir=desc&view=list";
@@ -15,17 +17,17 @@ function grabLinksM($src)
 
 //    $dataObj = $setDataObj[0];
     foreach ($setDataObj as $dataObj) {
-        $setName = str_replace(" ", "+", $dataObj->edition);
+        $setName = str_replace([" ", ":", "'"], ["+", "%3A", "%27"], $dataObj->edition);
 
         // Fix the link with MKM quirks
-        $find = ["--set--", "'", "Ravnica?", "4th+Edition", "5th+Edition", "6th+Edition", "7th+Edition", "8th+Edition",
-            "9th+Edition", "10th+Edition"];
-        $replace = [$setName, "%27", "Ravnica%3A+City+of+Guilds?", "Fourth+Edition", "Fifth+Edition", "Sixth+Edition",
-            "Seventh+Edition", "Eighth+Edition", "Ninth+Edition", "Tenth+Edition"];
+        $find = ["--set--", "Ravnica?sort", "4th+Edition", "5th+Edition", "6th+Edition", "7th+Edition", "8th+Edition",
+            "9th+Edition", "10th+Edition", "Timeshifted?", "Return+to+Ravnica%3A+City+of+Guilds"];
+        $replace = [$setName, "Ravnica%3A+City+of+Guilds?sort", "Fourth+Edition", "Fifth+Edition", "Sixth+Edition",
+            "Seventh+Edition", "Eighth+Edition", "Ninth+Edition", "Tenth+Edition", "Time+Spiral?idRarity=20&",
+            "Return+To+Ravnica"];
 
         $link = str_replace($find, $replace, $baseURL);
 
-        $linkNext = str_replace("--set--", $setName, $baseURLNext);
         $setCode = $dataObj->code;
 
         $url = $link;
@@ -122,6 +124,9 @@ function grabLinksM($src)
                 }
             }
         }
+
+        // fair use delay
+        sleep(6);
     }
 
     $now = getdate();
@@ -130,4 +135,12 @@ function grabLinksM($src)
     file_put_contents("$fullPath/{$now['mday']}.json", json_encode(array_values($allCardsArray)), FILE_APPEND);
 
     echo "finished";
+}
+
+/**
+ * @param $card array with set, cardname
+ * @return price
+ */
+function verifyPrice($card) {
+    $link = "https://www.magiccardmarket.eu/Products/Singles/";
 }
