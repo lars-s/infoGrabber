@@ -1,4 +1,4 @@
-var bulkThreshold = 0.09;
+var bulkThreshold = 0.13;
 
 
 function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
@@ -93,7 +93,7 @@ function parseCartData(orderData) {
 	    	name += "*";
 	    }
 
-	    price = parseFloat($(this).find(".Price div.nowrap").text());
+	    price = $(this).find(".Price div.nowrap").text();
 	    price = parseFloat(price.replace(",", ".").replace(" €", ""));
 
 	    amount = $(this).find(".Amount div.itemAmount").text();
