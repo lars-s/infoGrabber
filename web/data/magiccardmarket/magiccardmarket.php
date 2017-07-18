@@ -20,11 +20,10 @@ function grabLinksM($src)
         $setName = str_replace([" ", ":", "'"], ["+", "%3A", "%27"], $dataObj->edition);
 
         // Fix the link with MKM quirks
-        $find = ["--set--", "Ravnica?sort", "4th+Edition", "5th+Edition", "6th+Edition", "7th+Edition", "8th+Edition",
-            "9th+Edition", "10th+Edition", "Timeshifted?", "Return+to+Ravnica%3A+City+of+Guilds"];
-        $replace = [$setName, "Ravnica%3A+City+of+Guilds?sort", "Fourth+Edition", "Fifth+Edition", "Sixth+Edition",
-            "Seventh+Edition", "Eighth+Edition", "Ninth+Edition", "Tenth+Edition", "Time+Spiral?idRarity=20&",
-            "Return+To+Ravnica"];
+        $find = ["--set--", "4th+Edition", "5th+Edition", "6th+Edition", "7th+Edition", "8th+Edition",
+            "9th+Edition", "10th+Edition", "Timeshifted?"];
+        $replace = [$setName, "Fourth+Edition", "Fifth+Edition", "Sixth+Edition",
+            "Seventh+Edition", "Eighth+Edition", "Ninth+Edition", "Tenth+Edition", "Time+Spiral?idRarity=20&"];
 
         $link = str_replace($find, $replace, $baseURL);
 
@@ -135,12 +134,4 @@ function grabLinksM($src)
     file_put_contents("$fullPath/{$now['mday']}.json", json_encode(array_values($allCardsArray)), FILE_APPEND);
 
     echo "finished";
-}
-
-/**
- * @param $card array with set, cardname
- * @return price
- */
-function verifyPrice($card) {
-    $link = "https://www.magiccardmarket.eu/Products/Singles/";
 }

@@ -63,9 +63,12 @@ function updateGoldfishJSONToDB($conn, $jsonFileSrc)
  */
 function getFodderList($conn)
 {
-    $query = "SELECT cardname, code, price_avg_mkm, price_avg_mtggoldfish, (price_avg_mtggoldfish/2) / (price_avg_mkm*3) " .
-        " as margin FROM cards WHERE (price_avg_mkm BETWEEN 0.5 AND 5) AND price_avg_mtggoldfish AND " .
-        "(price_avg_mkm*3) < (price_avg_mtggoldfish/2) ORDER BY (price_avg_mtggoldfish/2) / (price_avg_mkm*3) DESC";
+//    $query = "SELECT cardname, code, price_avg_mkm, price_avg_mtggoldfish, (price_avg_mtggoldfish/2) / (price_avg_mkm*3) " .
+//        " as margin FROM cards WHERE (price_avg_mkm BETWEEN 0.5 AND 5) AND price_avg_mtggoldfish AND " .
+//        "(price_avg_mkm*3) < (price_avg_mtggoldfish/2) ORDER BY (price_avg_mtggoldfish/2) / (price_avg_mkm*3) DESC";
+    $query = "SELECT cardname, code, price_avg_mkm, price_avg_mtggoldfish, " .
+        "(price_avg_mtggoldfish/2) / (price_avg_mkm*3) as margin FROM cards WHERE (price_avg_mkm BETWEEN 0.5 AND 50) " .
+        "AND price_avg_mtggoldfish BETWEEN 0.5 AND 50 ORDER BY (price_avg_mtggoldfish/2) / (price_avg_mkm*3) DESC LIMIT 400";
     $result = $conn->query($query);
 
     return $result;
@@ -76,7 +79,7 @@ function getFodderList($conn)
  * @return mixed query result, db matches
  */
 function getCashOutList($conn) {
-        $query = "SELECT cardname,code, price_avg_mkm, price_avg_mtggoldfish, (price_avg_mkm / price_avg_mtggoldfish) " .
+        $query = "SELECT cardname, code, price_avg_mkm, price_avg_mtggoldfish, (price_avg_mkm / price_avg_mtggoldfish) " .
             "as margin FROM cards WHERE (price_avg_mkm / price_avg_mtggoldfish >= 0.7) AND " .
             "(price_avg_mkm BETWEEN 4 AND 40) AND (price_avg_mtggoldfish BETWEEN 3 AND 55) ".
             "ORDER BY (price_avg_mkm / price_avg_mtggoldfish) DESC";
