@@ -50,10 +50,8 @@ function getDetailedPrices($card)
     // add set to link
     $setName = getLongnameFromCode($card["code"]);
     $setName = str_replace([" ", ":", "'"], ["+", "%3A", "%27"], $setName);
-    $find = ["--set--", "4th+Edition", "5th+Edition", "6th+Edition", "7th+Edition", "8th+Edition",
-        "9th+Edition", "10th+Edition"];
-    $replace = [$setName, "Fourth+Edition", "Fifth+Edition", "Sixth+Edition",
-        "Seventh+Edition", "Eighth+Edition", "Ninth+Edition", "Tenth+Edition"];
+    $find = ["--set--"];
+    $replace = [$setName];
     $link .= str_replace($find, $replace, $setName) . "/";
 
     // add card to link
