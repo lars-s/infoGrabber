@@ -29,4 +29,4 @@ if ($conn->connect_error) {
 //writeMKMJSONToDB($conn, 'data/magiccardmarket/result/2017/July/18.json');
 //updateGoldfishJSONToDB($conn, 'data/mtggoldfish/result/2017/July/18.json');
 
-createToDoList($conn);
+//createToDoList($conn);

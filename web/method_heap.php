@@ -36,6 +36,21 @@ function getLongnameFromCode($code)
     return "ERROR; set name not found for $code";
 }
 
+function getCodeFromLongname($longname)
+{
+    $setData = file_get_contents("data/set_data_complete.json");
+
+    $setDataArray = json_decode($setData);
+
+    foreach ($setDataArray as $set) {
+        if ($set->edition == $longname) {
+            return $set->code;
+        }
+    }
+
+    return "ERROR; set name not found for $code";
+}
+
 /**
  * @param $card array with code, cardname
  * @return price array with table name and value (e.g. ["buylist_ck" => "2.54", ..])
