@@ -84,6 +84,7 @@ function parseCartData(orderData) {
 	    var name = $(this).find("td:nth-child(4)").find("a").text();
 	    var link = $(this).find("td:nth-child(8)").find("a").attr("href");
 	    var price, amount;
+		var condition = 1;
 
 	    var foil = $(this).find("td:nth-child(10)").find("span").prop("outerHTML");
 	    if (	foil !== undefined &&
@@ -108,7 +109,7 @@ function parseCartData(orderData) {
 	    		bulkRareCost += (price+extraCost)*amount;
 	    	}
 	    } else {
-	    	parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name +'")'
+	    	parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name +'")' + "\t" + condition 
 	    					+ "\t" + (price+extraCost)*amount + "\r\n";
 	    }
 	});
