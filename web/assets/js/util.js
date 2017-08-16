@@ -1,4 +1,4 @@
-var bulkThreshold = 0.13;
+var bulkThreshold = 0.03;
 
 
 function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
