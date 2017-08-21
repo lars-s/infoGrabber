@@ -112,7 +112,7 @@ function parseCartData(orderData) {
 	    	}
 	    } else {
 	    	parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name +'")' + "\t" + condition 
-	    					+ "\t" + finalPrice + "\r\n";
+	    					+ "\t" + finalPrice*amount + "\r\n";
 	    }
 	});
 
