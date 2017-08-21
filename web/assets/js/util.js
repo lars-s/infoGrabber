@@ -100,7 +100,7 @@ function parseCartData(orderData) {
 	    amount = $(this).find(".Amount div.itemAmount").text();
 	    amount = parseInt(amount.replace("x", ""));
 
-	var finalPrice = (price+(((price*amount)/sumCost)*shippingCost))/amount;
+	var finalPrice = price+((((price*amount)/sumCost)*shippingCost))/amount;
 		
 	    if (parseFloat(price) <= bulkThreshold) {
 	    	if (foil) {
