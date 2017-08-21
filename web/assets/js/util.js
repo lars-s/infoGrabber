@@ -75,10 +75,10 @@ function parseCartData(orderData) {
 	var shippingCost = $(".MKMShipmentSummary > tbody tr:nth-child(7)").find(".shipmentSummaryMoney").text();
 	var numberOfCards = parseInt($(".MKMShipmentSummary > tbody tr:nth-child(4)").find("td:nth-child(2)").text());
 	var bulkRareCost = 0, bulkFoilCost = 0, bulkRare = 0, bulkFoil = 0;
+	var sumCost = $(".MKMShipmentSummary > tbody tr:nth-child(6)").find(".shipmentSummaryMoney").text();
 
 	shippingCost = parseFloat(shippingCost.replace(",","."));
-
-	var extraCost = shippingCost / numberOfCards;
+	sumCost = parseFloat(sumCost.replace(",","."));
 
 	$(orderData).find(".MKMTable tbody tr").each(function() {
 	    var name = $(this).find("td:nth-child(4)").find("a").text();
@@ -100,17 +100,19 @@ function parseCartData(orderData) {
 	    amount = $(this).find(".Amount div.itemAmount").text();
 	    amount = parseInt(amount.replace("x", ""));
 
+	var finalPrice = price+(price/sumCost)*shippingCost*amount;
+		
 	    if (parseFloat(price) <= bulkThreshold) {
 	    	if (foil) {
 	    		bulkFoil += 1*amount;
-	    		bulkFoilCost += (price+extraCost)*amount;
+	    		bulkFoilCost += finalPrice;
 	    	} else {
 	    		bulkRare += 1*amount;
-	    		bulkRareCost += (price+extraCost)*amount;
+	    		bulkRareCost += finalPrice;
 	    	}
 	    } else {
 	    	parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name +'")' + "\t" + condition 
-	    					+ "\t" + (price+extraCost)*amount + "\r\n";
+	    					+ "\t" + finalPrice + "\r\n";
 	    }
 	});
 
