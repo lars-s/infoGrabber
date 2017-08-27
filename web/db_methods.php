@@ -9,7 +9,7 @@ function writeMKMJSONToDB($conn, $jsonFileSrc)
     $file = file_get_contents($jsonFileSrc);
     $cardsArray = json_decode($file);
 
-    $query = "INSERT INTO cards (cardname, code, price_avg_mkm, parseDate, foil) VALUES ";
+    $query = "REPLACE INTO cards (cardname, code, price_avg_mkm, parseDate, foil) VALUES ";
     foreach ($cardsArray as $card) {
         $cleanName = str_replace("'", "\\'", $card->name);
         $query .= "('{$cleanName}', '{$card->set}', '{$card->price}', '{$date}', '{$card->foil}'),\r\n";
@@ -18,9 +18,7 @@ function writeMKMJSONToDB($conn, $jsonFileSrc)
     // Replace last comma with a semicolon
     $query = substr($query, 0, -3) . ";";
 
-    if ($conn->query($query) === TRUE) {
-
-    } else {
+    if ($conn->query($query) !== TRUE) {
         echo "Error: <br>" . $conn->error;
     }
 
@@ -47,9 +45,7 @@ function updateGoldfishJSONToDB($conn, $jsonFileSrc)
         $cleanName = str_replace("'", "\\'", $card->name);
         $query = "UPDATE cards SET price_avg_mtggoldfish = '{$card->price}' " .
             "WHERE cardname='{$cleanName}' AND code='{$card->set}' AND foil='{$card->foil}'";
-        if ($conn->query($query) === TRUE) {
-
-        } else {
+        if ($conn->query($query) !== TRUE) {
             echo "Error: <br>" . $conn->error;
         }
     }
