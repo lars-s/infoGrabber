@@ -27,6 +27,6 @@ if ($conn->connect_error) {
 //grabLinksM($src);
 
 //writeMKMJSONToDB($conn, 'data/magiccardmarket/result/2017/August/27.json');
-updateGoldfishJSONToDB($conn, 'data/mtggoldfish/result/2017/August/21.json');
+//updateGoldfishJSONToDB($conn, 'data/mtggoldfish/result/2017/August/21.json');
 
-//createToDoList($conn);
+createToDoList($conn);

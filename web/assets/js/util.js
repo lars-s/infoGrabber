@@ -38,6 +38,9 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
             edition += "+Core+Set";
         }
 
+        if (edition.lastIndexOf("Commander+2013") > -1) {
+            edition += "+Edition";
+        }
 
         if (edition.lastIndexOf("Modern+Masters+20") > -1) {
             edition += "+Edition";
