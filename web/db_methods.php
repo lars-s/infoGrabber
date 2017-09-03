@@ -74,12 +74,36 @@ function getFodderList($conn)
  * @param $conn database connection
  * @return mixed query result, db matches
  */
-function getCashOutList($conn) {
-        $query = "SELECT cardname, code, price_avg_mkm, price_avg_mtggoldfish, (price_avg_mkm / price_avg_mtggoldfish) " .
-            "as margin FROM cards WHERE (price_avg_mkm / price_avg_mtggoldfish >= 0.7) AND " .
-            "(price_avg_mkm BETWEEN 4 AND 40) AND (price_avg_mtggoldfish BETWEEN 3 AND 55) ".
-            "ORDER BY (price_avg_mkm / price_avg_mtggoldfish) DESC";
+function getCashOutList($conn)
+{
+    $query = "SELECT cardname, code, price_avg_mkm, price_avg_mtggoldfish, (price_avg_mkm / price_avg_mtggoldfish) " .
+        "as margin FROM cards WHERE (price_avg_mkm / price_avg_mtggoldfish >= 0.7) AND " .
+        "(price_avg_mkm BETWEEN 4 AND 40) AND (price_avg_mtggoldfish BETWEEN 3 AND 55) " .
+        "ORDER BY (price_avg_mkm / price_avg_mtggoldfish) DESC";
     $result = $conn->query($query);
 
     return $result;
+}
+
+function updateCard($card, $conn)
+{
+    // WRITE BUYLIST CARD KINGDOM
+    if (isset($card["buylist_ck"])) {
+        $cleanName = str_replace("'", "\\'", $card["name"]);
+        $query = "UPDATE cards SET buylist_ck = '{$card["buylist_ck"]}' " .
+            "WHERE cardname='$cleanName' AND code='{$card["set"]}' AND foil='{$card["foil"]}'";
+        if ($conn->query($query) !== TRUE) {
+            echo "Error: <br>" . $conn->error;
+        }
+    }
+
+    // WRITE BUYLIST ABU
+    if (isset($card["buylist_abu"])) {
+        $cleanName = str_replace("'", "\\'", $card["name"]);
+        $query = "UPDATE cards SET buylist_abu = '{$card["buylist_abu"]}' " .
+            "WHERE cardname='$cleanName' AND code='{$card["set"]}' AND foil='{$card["foil"]}'";
+        if ($conn->query($query) !== TRUE) {
+            echo "Error: <br>" . $conn->error;
+        }
+    }
 }

@@ -25,6 +25,10 @@
     "code": "SOI"
   },
   {
+    "edition": "Shadows Over Innistrad",
+    "code": "SOI"
+  },
+  {
     "link_mtggoldfish": "\/index\/OGW",
     "edition": "Oath of the Gatewatch",
     "code": "OGW"
@@ -65,8 +69,16 @@
     "code": "M15"
   },
   {
+    "edition": "2015 Core Set",
+    "code": "M15"
+  },
+  {
     "link_mtggoldfish": "\/index\/M14",
     "edition": "Magic 2014",
+    "code": "M14"
+  },
+  {
+    "edition": "2014 Core Set",
     "code": "M14"
   },
   {
@@ -75,8 +87,16 @@
     "code": "M13"
   },
   {
+    "edition": "2013 Core Set",
+    "code": "M13"
+  },
+  {
     "link_mtggoldfish": "\/index\/M12",
     "edition": "Magic 2012",
+    "code": "M12"
+  },
+  {
+    "edition": "2012 Core Set",
     "code": "M12"
   },
   {
@@ -85,8 +105,16 @@
     "code": "M11"
   },
   {
+    "edition": "2011 Core Set",
+    "code": "M11"
+  },
+  {
     "link_mtggoldfish": "\/index\/M10",
     "edition": "Magic 2010",
+    "code": "M10"
+  },
+  {
+    "edition": "2010 Core Set",
     "code": "M10"
   },
   {
@@ -95,13 +123,25 @@
     "code": "10E"
   },
   {
+    "edition": "10th Edition",
+    "code": "10E"
+  },
+  {
     "link_mtggoldfish": "\/index\/9ED",
     "edition": "Ninth Edition",
     "code": "9ED"
   },
   {
+    "edition": "9th Edition",
+    "code": "9ED"
+  },
+  {
     "link_mtggoldfish": "\/index\/8ED",
     "edition": "Eighth Edition",
+    "code": "8ED"
+  },
+  {
+    "edition": "8th Edition",
     "code": "8ED"
   },
   {
@@ -265,6 +305,10 @@
     "code": "RAV"
   },
   {
+    "edition": "Ravnica",
+    "code": "RAV"
+  },
+  {
     "link_mtggoldfish": "\/index\/SOK",
     "edition": "Saviors of Kamigawa",
     "code": "SOK"
@@ -300,8 +344,16 @@
     "code": "7EX"
   },
   {
+    "edition": "7th Edition",
+    "code": "7EX"
+  },
+  {
     "link_mtggoldfish": "\/index\/6ED",
     "edition": "Sixth Edition",
+    "code": "6ED"
+  },
+  {
+    "edition": "6th Edition",
     "code": "6ED"
   },
   {
@@ -310,13 +362,25 @@
     "code": "5ED"
   },
   {
+    "edition": "5th Edition",
+    "code": "5ED"
+  },
+  {
     "link_mtggoldfish": "\/index\/4ED",
     "edition": "Fourth Edition",
     "code": "4ED"
   },
   {
+    "edition": "4th Edition",
+    "code": "4ED"
+  },
+  {
     "link_mtggoldfish": "\/index\/3ED",
     "edition": "Revised Edition",
+    "code": "3ED"
+  },
+  {
+    "edition": "3rd Edition",
     "code": "3ED"
   },
   {
@@ -500,8 +564,16 @@
     "code": "PO2"
   },
   {
+    "edition": "Portal II",
+    "code": "PO2"
+  },
+  {
     "link_mtggoldfish": "\/index\/PTK",
     "edition": "Portal Three Kingdoms",
+    "code": "PTK"
+  },
+  {
+    "edition": "Portal 3K",
     "code": "PTK"
   },
   {
@@ -537,6 +609,10 @@
   {
     "link_mtggoldfish": "\/index\/CN2",
     "edition": "Conspiracy: Take the Crown",
+    "code": "CN2"
+  },
+  {
+    "edition": "Conspiracy - Take the Crown",
     "code": "CN2"
   },
   {

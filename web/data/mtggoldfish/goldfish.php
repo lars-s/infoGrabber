@@ -12,6 +12,10 @@ function grabLinks($src)
 //    $dataObj = $goldfishDataObj[0];
     $allCardsArray = [];
     foreach ($goldfishDataObj as $dataObj) {
+        // No goldfish link, skip this
+        if (!isset($dataObj->link_mtggoldfish)) {
+            continue;
+        }
         $link = $baseURL . $dataObj->link_mtggoldfish;
 
         $url = $link;
