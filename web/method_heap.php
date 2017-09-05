@@ -1,5 +1,8 @@
 <?php
 
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+
 function parseCodesFromMTGGoldfishLinks()
 {
     $setData = file_get_contents("data/set_data.json");
@@ -290,7 +293,10 @@ function grabABUPrices($conn)
 
 function grabCKPrices($offset, $page, $conn)
 {
-    $url = "http://www.cardkingdom.com/purchasing/mtg_singles?filter%5Bipp%5D=$offset&filter%5Bsort%5D=price_desc&filter%5Bsearch%5D=mtg_advanced&filter%5Bname%5D=&filter%5Bcategory_id%5D=0&filter%5Bnonfoil%5D=1&filter%5Brarity%5D%5B0%5D=M&filter%5Brarity%5D%5B1%5D=R&filter%5Brarity%5D%5B2%5D=U&filter%5Brarity%5D%5B3%5D=C&filter%5Bprice_op%5D=>%3D&filter%5Bprice%5D=0.4&page=$page";
+    $url = "http://www.cardkingdom.com/purchasing/mtg_singles?filter%5Bipp%5D=$offset&filter%5Bsort%5D=" .
+        "price_desc&filter%5Bsearch%5D=mtg_advanced&filter%5Bname%5D=&filter%5Bcategory_id%5D=0&filter%5Bnonfoil%5D=" .
+        "1&filter%5Brarity%5D%5B0%5D=M&filter%5Brarity%5D%5B1%5D=R&filter%5Brarity%5D%5B2%5D=" .
+        "U&filter%5Brarity%5D%5B3%5D=C&filter%5Bprice_op%5D=>%3D&filter%5Bprice%5D=0.4&page=$page";
 
     $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
     $handle = curl_init($url);
@@ -348,4 +354,23 @@ function grabCKPrices($offset, $page, $conn)
     foreach ($resultsCKBuylist as $finishedCard) {
         updateCard($finishedCard, $conn);
     }
+}
+
+function getMKMPrice()
+{
+    $host = 'http://localhost:4444/wd/hub';
+    $userID = "14344";
+    $url = "https://www.magickartenmarkt.de/?mainPage=browseUserProducts&idCategory=1&idUser=$userID&" .
+        "resultsPage=0&idLanguage=1&condition_uneq=%3C%3D&condition=EX&isFoil=N&isSigned=N&isPlayset=0&isAltered=N";
+
+    $driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
+
+    $driver->get($url);
+
+    // adding cookie
+    $driver->manage()->deleteAllCookies();
+    $cookie = new Cookie('cookie_name', 'cookie_value');
+    $driver->manage()->addCookie($cookie);
+    $cookies = $driver->manage()->getCookies();
+    print_r($cookies);
 }

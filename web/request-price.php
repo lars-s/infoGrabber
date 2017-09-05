@@ -7,6 +7,7 @@ $DEBUGGING = false;
 @include "db_methods.php";
 @include "method_heap.php";
 @include "config.php";
+@include "vendor/autoload.php";
 //error_reporting(E_ERROR);
 
 if ($DEBUGGING) {
@@ -26,17 +27,18 @@ if ($conn->connect_error) {
 //grabLinks($src);
 //grabLinksM($src);
 
-writeMKMJSONToDB($conn, 'data/magiccardmarket/result/2017/September/3.json');
-updateGoldfishJSONToDB($conn, 'data/mtggoldfish/result/2017/September/3.json');
-
+//writeMKMJSONToDB($conn, 'data/magiccardmarket/result/2017/September/3.json');
+//updateGoldfishJSONToDB($conn, 'data/mtggoldfish/result/2017/September/3.json');
+//
 //createToDoList($conn);
+//
+//$max = 9;
+//for ($i = 1; $i < $max; $i++) {
+//    grabCKPrices(500, $i, $conn);
+//    sleep(10);
+//}
+//
+//
+//grabABUPrices($conn);
 
-$max = 9;
-for ($i = 1; $i < $max; $i++) {
-    grabCKPrices(500, $i, $conn);
-    sleep(10);
-}
-
-
-grabABUPrices($conn);
-
+getMKMPrice();
