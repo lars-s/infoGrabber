@@ -7,7 +7,8 @@ $DEBUGGING = false;
 @include "db_methods.php";
 @include "method_heap.php";
 @include "config.php";
-@include "vendor/autoload.php";
+
+require_once('vendor/autoload.php');
 //error_reporting(E_ERROR);
 
 if ($DEBUGGING) {

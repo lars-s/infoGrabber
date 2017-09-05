@@ -1,5 +1,6 @@
 <?php
 
+
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 
@@ -363,14 +364,15 @@ function getMKMPrice()
     $url = "https://www.magickartenmarkt.de/?mainPage=browseUserProducts&idCategory=1&idUser=$userID&" .
         "resultsPage=0&idLanguage=1&condition_uneq=%3C%3D&condition=EX&isFoil=N&isSigned=N&isPlayset=0&isAltered=N";
 
+
     $driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
 
-    $driver->get($url);
-
-    // adding cookie
-    $driver->manage()->deleteAllCookies();
-    $cookie = new Cookie('cookie_name', 'cookie_value');
-    $driver->manage()->addCookie($cookie);
-    $cookies = $driver->manage()->getCookies();
-    print_r($cookies);
+//    $driver->get("www.google.de");
+//
+//    // adding cookie
+//    $driver->manage()->deleteAllCookies();
+//    $cookie = new Cookie('cookie_name', 'cookie_value');
+//    $driver->manage()->addCookie($cookie);
+//    $cookies = $driver->manage()->getCookies();
+//    print_r($cookies);
 }
