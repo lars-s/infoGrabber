@@ -103,56 +103,6 @@ function getDetailedPrices($card)
 
     $prices["price_trend_mkm"] = $priceTrend;
 
-    /*
-        Get buylists from goldfish
-    */
-    $link = "https://www.mtggoldfish.com/price/";
-
-    // add set to link
-    $setName = getLongnameFromCode($card["code"]);;
-    $find = [" ", ":", "'", "Commander+2013"];
-    $replace = ["+", "", "", "Commander+2013+Edition"];
-    $setName = str_replace($find, $replace, $setName);
-    $link .= $setName . "/";
-
-    // add card to link
-    $link .= str_replace([" ", ":", "'", ","], ["+", "", "", ""], $card["cardname"]);
-
-    // init curl for goldfish
-    $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
-    $handle = curl_init($link);
-    curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($handle, CURLOPT_USERAGENT, $agent);
-
-    $response = curl_exec($handle);
-    if ($response === false) {
-        $response = curl_error($handle);
-        echo stripslashes($response);
-        return [];
-    } else {
-        $html = $response;
-    }
-
-    libxml_use_internal_errors(true); // Prevent HTML errors from displaying
-    $doc = new DOMDocument();
-
-    $doc->loadHTML($html);
-    curl_close($handle);
-
-    $data = preg_replace("/\r|\n/", "", $doc->saveHTML());
-
-
-    if (preg_match('/(price-card-buy-prices)(.{1,5000})(abu.games)(.{1,500})(btn-shop-price)(.+?)(\d+.\d{2})/', $data, $match)) {
-        $prices["buylist_abu"] = $match[7];
-    }
-
-    if (preg_match('/(price-card-buy-prices)(.{1,5000})(cardkingdom)(.{1,500})(btn-shop-price)(.+?)(\d+.\d{2})/', $data, $match)) {
-        $prices["buylist_ck"] = $match[7];
-    }
-
-    if (preg_match('/(price-card-buy-prices)(.{1,5000})(channelfireball)(.{1,500})(btn-shop-price)(.+?)(\d+.\d{2})/', $data, $match)) {
-        $prices["buylist_cfb"] = $match[7];
-    }
 
     return $prices;
 }
@@ -176,6 +126,8 @@ function createToDoList($conn)
 
     $jsonFile = json_encode($cardArray);
     file_put_contents("todo.json", $jsonFile);
+
+    echo "TODO list with cards created";
 }
 
 function popTodoList($conn)
@@ -243,11 +195,15 @@ function grabABUPrices($conn)
 
         $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
         $handle = curl_init($url);
+        // increase the number of results per page
+        $cookieString = "maxresults=400;";
+
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle, CURLOPT_USERAGENT, $agent);
-        // TODO: Modify cookie to accept 400 results
+        curl_setopt($handle, CURLOPT_COOKIE, $cookieString);
 
         $response = curl_exec($handle);
+
 
         $pattern = "/(<tr><td class=\"small\">)(.*?)(<\/tr>)/";
 
@@ -301,6 +257,7 @@ function grabCKPrices($offset, $page, $conn)
     $response = str_replace("\r", "", $response);
     $response = str_replace("\n", "", $response);
 
+    // Pattern to grab all cards
     $pattern = "/(i class=\"itemRow).+?(<\/li>\s+?<l)/";
 
     preg_match_all($pattern, $response, $cards_raw);
@@ -348,4 +305,108 @@ function grabCKPrices($offset, $page, $conn)
     foreach ($resultsCKBuylist as $finishedCard) {
         updateCard($finishedCard, $conn);
     }
+}
+
+function getCKPurchasePrices($conn)
+{
+    // until page 33 to get all cards up to about 20$
+    for ($i = 1; $i < 33; $i++) {
+        $url = "http://www.cardkingdom.com/catalog/view?filter%5Bipp%5D=60&filter%5Bsort%5D=" .
+            "price_asc&filter%5Bsearch%5D=mtg_advanced&filter%5Bcategory_id%5D=0&filter%5Bmulti%5D%5B0%5D=1" .
+            "&filter%5Brarity%5D%5B0%5D=M&filter%5Brarity%5D%5B1%5D=R&filter%5Btype_mode%5D=any&filter%" .
+            "5Bprice_op%5D=%3E%3D&filter%5Bprice%5D=2.99&filter%5Bmanaprod_select%5D=any&page=$i";
+
+        $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
+        $handle = curl_init($url);
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_USERAGENT, $agent);
+
+        $response = curl_exec($handle);
+        $response = str_replace("\r", "", $response);
+        $response = str_replace("\n", "", $response);
+
+        // Pattern to grab all cards
+        $pattern = "/(<div class=\"productItemWrapper)(.+?)(<\/script>                    <\/div>                              <\/div>)/";
+
+        preg_match_all($pattern, $response, $cards_raw);
+
+        $resultsCKPrices = [];
+        foreach ($cards_raw[0] as $card) {
+            $patternSetName = "/(productDetailSet\">)(.+?)(\()/";
+            $patternCardName = "/(productDetailTitle\"><a href.+?>)(.+?)(<\/a>)/";
+            $patternCardValueDollar = "/(stylePrice\">)(.+?)(<\/span>)/";
+
+            // GET THE SET NAME
+            preg_match($patternSetName, $card, $setNameRaw);
+            //  TRIM THE SET NAME
+            $setName = trim($setNameRaw[2]);
+            $setCode = getCodeFromLongname($setName);
+
+            // Transform to set code, cancel operation if ERROR
+            if (strlen($setCode) > 3) {
+                echo $setName . "\r\n";
+                continue;
+            }
+
+            // GET THE CARD NAME
+            preg_match($patternCardName, $card, $cardNameRaw);
+            $cardName = trim($cardNameRaw[2]);
+
+            // GET THE PURCHAES PRICE
+            if (preg_match($patternCardValueDollar, $card)) {
+                preg_match($patternCardValueDollar, $card, $value);
+                $value = str_replace("$", "", $value);
+            } else {
+                continue;
+            }
+
+            $resultsCKPrices[] = [
+                "name" => $cardName,
+                "set" => $setCode,
+                "sell_ck" => $value[2],
+                "foil" => 0
+            ];
+        }
+
+        foreach ($resultsCKPrices as $finishedCard) {
+            updateCard($finishedCard, $conn);
+        }
+
+        // fair use
+        sleep(5);
+    }
+}
+
+function getEDNMI()
+{
+    $data = [
+        "productFilter%5BsellerStatus0%5D" => "on",
+        "productFilter%5BsellerStatus1%5D" => "on",
+        "productFilter%5BsellerStatus2%5D" => "on",
+        "productFilter[sellerRatings][]" => 1,
+        "productFilter[sellerRatings][]" => 2,
+        "productFilter[idLanguage][]" => 1,
+        "productFilter[condition][]" => "MT",
+        "productFilter[condition][]" => "NM",
+        "productFilter%5BisFoil%5D" => 0,
+        "productFilter%5BisSigned%5D" => 0,
+        "productFilter%5BisAltered%5D" => 0,
+        "productFilter%5BminAmount%5D" => 1
+    ];
+
+    $url = "https://www.magickartenmarkt.de/Products/Singles/Champions+of+Kamigawa/Untaidake%2C+the+Cloud+Keeper";
+    $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
+    $handle = curl_init($url);
+    curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($handle, CURLOPT_USERAGENT, $agent);
+
+    curl_setopt($handle, CURLOPT_POST, true);
+    curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
+
+    $response = curl_exec($handle);
+    
+    print($response);
+    curl_getinfo($handle, CURLINFO_EFFECTIVE_URL );
+
+    curl_close($handle);
 }

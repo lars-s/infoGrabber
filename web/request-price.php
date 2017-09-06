@@ -26,17 +26,22 @@ if ($conn->connect_error) {
 //grabLinks($src);
 //grabLinksM($src);
 
-writeMKMJSONToDB($conn, 'data/magiccardmarket/result/2017/September/3.json');
-updateGoldfishJSONToDB($conn, 'data/mtggoldfish/result/2017/September/3.json');
+//writeMKMJSONToDB($conn, 'data/magiccardmarket/result/2017/September/4.json');
+//updateGoldfishJSONToDB($conn, 'data/mtggoldfish/result/2017/September/4.json');
 
 //createToDoList($conn);
 
-$max = 9;
-for ($i = 1; $i < $max; $i++) {
-    grabCKPrices(500, $i, $conn);
-    sleep(10);
-}
+//$max = 9;
+//for ($i = 1; $i < $max; $i++) {
+//    grabCKPrices(500, $i, $conn);
+//    sleep(10);
+//}
 
 
-grabABUPrices($conn);
+//grabABUPrices($conn);
 
+//getCKPurchasePrices($conn);
+
+//getCKPurchasePrices($conn);
+
+getEDNMI();
