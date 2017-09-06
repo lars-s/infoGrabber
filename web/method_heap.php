@@ -103,6 +103,56 @@ function getDetailedPrices($card)
 
     $prices["price_trend_mkm"] = $priceTrend;
 
+    /*
+        Get buylists from goldfish
+    */
+    $link = "https://www.mtggoldfish.com/price/";
+
+    // add set to link
+    $setName = getLongnameFromCode($card["code"]);;
+    $find = [" ", ":", "'", "Commander+2013"];
+    $replace = ["+", "", "", "Commander+2013+Edition"];
+    $setName = str_replace($find, $replace, $setName);
+    $link .= $setName . "/";
+
+    // add card to link
+    $link .= str_replace([" ", ":", "'", ","], ["+", "", "", ""], $card["cardname"]);
+
+    // init curl for goldfish
+    $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
+    $handle = curl_init($link);
+    curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($handle, CURLOPT_USERAGENT, $agent);
+
+    $response = curl_exec($handle);
+    if ($response === false) {
+        $response = curl_error($handle);
+        echo stripslashes($response);
+        return [];
+    } else {
+        $html = $response;
+    }
+
+    libxml_use_internal_errors(true); // Prevent HTML errors from displaying
+    $doc = new DOMDocument();
+
+    $doc->loadHTML($html);
+    curl_close($handle);
+
+    $data = preg_replace("/\r|\n/", "", $doc->saveHTML());
+
+
+    if (preg_match('/(price-card-buy-prices)(.{1,5000})(abu.games)(.{1,500})(btn-shop-price)(.+?)(\d+.\d{2})/', $data, $match)) {
+        $prices["buylist_abu"] = $match[7];
+    }
+
+    if (preg_match('/(price-card-buy-prices)(.{1,5000})(cardkingdom)(.{1,500})(btn-shop-price)(.+?)(\d+.\d{2})/', $data, $match)) {
+        $prices["buylist_ck"] = $match[7];
+    }
+
+    if (preg_match('/(price-card-buy-prices)(.{1,5000})(channelfireball)(.{1,500})(btn-shop-price)(.+?)(\d+.\d{2})/', $data, $match)) {
+        $prices["buylist_cfb"] = $match[7];
+    }
 
     return $prices;
 }
@@ -126,8 +176,6 @@ function createToDoList($conn)
 
     $jsonFile = json_encode($cardArray);
     file_put_contents("todo.json", $jsonFile);
-
-    echo "TODO list with cards created";
 }
 
 function popTodoList($conn)
@@ -195,15 +243,11 @@ function grabABUPrices($conn)
 
         $agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
         $handle = curl_init($url);
-        // increase the number of results per page
-        $cookieString = "maxresults=400;";
-
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle, CURLOPT_USERAGENT, $agent);
-        curl_setopt($handle, CURLOPT_COOKIE, $cookieString);
+        // TODO: Modify cookie to accept 400 results
 
         $response = curl_exec($handle);
-
 
         $pattern = "/(<tr><td class=\"small\">)(.*?)(<\/tr>)/";
 
@@ -257,7 +301,6 @@ function grabCKPrices($offset, $page, $conn)
     $response = str_replace("\r", "", $response);
     $response = str_replace("\n", "", $response);
 
-    // Pattern to grab all cards
     $pattern = "/(i class=\"itemRow).+?(<\/li>\s+?<l)/";
 
     preg_match_all($pattern, $response, $cards_raw);
@@ -404,9 +447,29 @@ function getEDNMI()
     curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
 
     $response = curl_exec($handle);
-    
+
     print($response);
     curl_getinfo($handle, CURLINFO_EFFECTIVE_URL );
 
     curl_close($handle);
+}
+
+function getMKMPrice()
+{
+    $host = 'http://localhost:4444/wd/hub';
+    $userID = "14344";
+    $url = "https://www.magickartenmarkt.de/?mainPage=browseUserProducts&idCategory=1&idUser=$userID&" .
+        "resultsPage=0&idLanguage=1&condition_uneq=%3C%3D&condition=EX&isFoil=N&isSigned=N&isPlayset=0&isAltered=N";
+
+
+    $driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
+
+//    $driver->get("www.google.de");
+//
+//    // adding cookie
+//    $driver->manage()->deleteAllCookies();
+//    $cookie = new Cookie('cookie_name', 'cookie_value');
+//    $driver->manage()->addCookie($cookie);
+//    $cookies = $driver->manage()->getCookies();
+//    print_r($cookies);
 }
