@@ -73,7 +73,9 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
     });
 }
 
-function parseCartData(orderData) {
+function parseCartData(orderData, makeLinks) {
+    // workaround to have default parameter value 1
+    makeLinks = (typeof makeLinks !== 'undefined') ?  makeLinks : 1;
     var parseData = '';
     var shippingCost = $(".MKMShipmentSummary > tbody tr:nth-child(7)").find(".shipmentSummaryMoney").text();
     var numberOfCards = parseInt($(".MKMShipmentSummary > tbody tr:nth-child(4)").find("td:nth-child(2)").text());
@@ -114,8 +116,12 @@ function parseCartData(orderData) {
                 bulkRareCost += finalPrice;
             }
         } else {
-            parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name + '")' + "\t" + condition
+            if (makeLinks == 1) {
+                parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name + '")' + "\t" + condition
                 + "\t" + finalPrice * amount + "\r\n";
+            } else {
+                parseData += amount + "\t" + name + "\t" + "\t" + finalPrice * amount + "\r\n";
+            }
         }
     });
 
