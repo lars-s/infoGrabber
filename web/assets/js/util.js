@@ -7,7 +7,7 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
 
     $(".MKMTable tbody tr").each(function () {
         var name = $(this).find("td:nth-child(" + nameCol + ")").find("a").attr("href");
-        name = name.replace("/Products/Singles/", "").replace("The", "the");
+        name = name.replace("/en/Magic/Products/Singles/", "").replace("The", "the");
 
         var edition, cardname;
 
