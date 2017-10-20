@@ -196,3 +196,32 @@ function getPrices() {
 
     return returnVal;
 }
+
+function getPricesQS() {
+    var returnVal = [];
+    returnVal["abu"] = 0;
+    returnVal["ck"] = 0;
+    returnVal["cfb"] = 0;
+
+    $("table#thisEditionPrices tr").each(function() {
+        // Check for ABU
+        if ($(this).find("span.label-buylist").text().indexOf("abugames")>-1) {
+            var abuPrice = $(this).find("td.sorting_1").text();
+            returnVal["abu"] = abuPrice;
+        }
+
+        // Check for CK
+        if ($(this).find("span.label-buylist").text().indexOf("cardkingdom")>-1) {
+            var ckPrice = $(this).find("td.sorting_1").text();
+            returnVal["ck"] = ckPrice;
+        }
+
+        // Check for CFB
+        if ($(this).find("span.label-buylist").text().indexOf("channelfireball")>-1) {
+            var cfbPrice = $(this).find("td.sorting_1").text();
+            returnVal["cfb"] = cfbPrice;
+        }
+    });
+
+    return returnVal;
+}
