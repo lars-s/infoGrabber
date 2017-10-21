@@ -91,6 +91,12 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
         edition = edition.replace("theros", "Theros");
         edition = edition.replace("Player+Rewards+Promos", "Magic+Player+Rewards");
 
+		// check for Timeshifted cards
+		var rarity = $(this).find("td:nth-child(" + parseInt(linkCol-1) + ")").find("span").attr("onmouseover");
+        if (rarity.indexOf("Time Shifted") > -1) {
+            edition = "Timeshifted"
+        }
+
         if (edition.lastIndexOf("Magic+2015") > -1) {
             edition += "+Core+Set";
         }
