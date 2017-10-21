@@ -114,6 +114,10 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
             edition += "+Edition";
         }
 
+        if (edition.lastIndexOf("Planechase+2012") > -1) {
+            edition += "+Edition";
+        }
+
         cardname = cardname.replace("%2C", "");
         cardname = cardname.replace("%27", "");
         cardname = cardname.replace("+%28Version+1%29", "-A");
