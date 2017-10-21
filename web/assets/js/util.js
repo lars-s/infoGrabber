@@ -1,7 +1,8 @@
 var bulkThreshold = 0;
-function makeFlagsQSLinks(nameCol, foilCol, linkCol, priceCol = null) {
+
+function makeFlagsQSLinks(nameCol, foilCol, linkCol, priceCol) {
     var linkGoldfish = "http://www.quietspeculation.com/tradertools/prices/sets/";
-    $(".MKMTable").addClass("injected"); 
+    $(".MKMTable").addClass("injected");
 
     $(".MKMTable tbody tr").each(function () {
         var name = $(this).find("td:nth-child(" + nameCol + ")").find("a").attr("href");
@@ -37,9 +38,9 @@ function makeFlagsQSLinks(nameCol, foilCol, linkCol, priceCol = null) {
         }
 
         name = edition + "/" + cardname;
-        
+
         var link = linkGoldfish + name;
-        
+
         var foil = $(this).find("td:nth-child(" + foilCol + ")").find("span").prop("outerHTML");
         if (foil !== undefined &&
             foil.lastIndexOf("Foil") > 0 &&
@@ -48,15 +49,15 @@ function makeFlagsQSLinks(nameCol, foilCol, linkCol, priceCol = null) {
 
             link += "/foil";
         }
-        
+
         if (priceCol) {
-        	var priceMKM = $(this).find("td:nth-child(" + priceCol + ")").find("div.algn-r.nowrap").text();
-        	priceMKM = priceMKM.replace(" ", "");
-        	priceMKM = priceMKM.replace(",", ".");
-        	priceMKM = priceMKM.replace("€", "");
-        	link += "?"+priceMKM;
+            var priceMKM = $(this).find("td:nth-child(" + priceCol + ")").find("div.algn-r.nowrap").text();
+            priceMKM = priceMKM.replace(" ", "");
+            priceMKM = priceMKM.replace(",", ".");
+            priceMKM = priceMKM.replace("€", "");
+            link += "?" + priceMKM;
         }
-        
+
         $(this).find("td:nth-child(" + linkCol + ")").find("a")
             .attr("href", link);
     });
@@ -91,8 +92,8 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
         edition = edition.replace("theros", "Theros");
         edition = edition.replace("Player+Rewards+Promos", "Magic+Player+Rewards");
 
-		// check for Timeshifted cards
-		var rarity = $(this).find("td:nth-child(" + parseInt(linkCol-1) + ")").find("span").attr("onmouseover");
+        // check for Timeshifted cards
+        var rarity = $(this).find("td:nth-child(" + parseInt(linkCol - 1) + ")").find("span").attr("onmouseover");
         if (rarity.indexOf("Time Shifted") > -1) {
             edition = "Timeshifted"
         }
@@ -142,7 +143,7 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
 
 function parseCartData(orderData, makeLinks) {
     // workaround to have default parameter value 1
-    makeLinks = (typeof makeLinks !== 'undefined') ?  makeLinks : 1;
+    makeLinks = (typeof makeLinks !== 'undefined') ? makeLinks : 1;
     var parseData = '';
     var shippingCost = $(".MKMShipmentSummary > tbody tr:nth-child(7)").find(".shipmentSummaryMoney").text();
     var numberOfCards = parseInt($(".MKMShipmentSummary > tbody tr:nth-child(4)").find("td:nth-child(2)").text());
@@ -165,7 +166,17 @@ function parseCartData(orderData, makeLinks) {
             foil = true;
             name += "*";
         }
+        var conditionText = $(this).find("td:nth-child(9)").find(".icon").attr("onmouseover");
 
+        if (conditionText !== undefined) {
+            if (conditionText.indexOf("Near Mint") > -1) {
+                condition = 1;
+            } else if (conditionText.indexOf("Excellent") > -1) {
+                condition = 0.8;
+            } else if (conditionText.indexOf("Good") > -1) {
+                condition = 0.6;
+            }
+        }
         price = $(this).find(".Price div.nowrap").text();
         price = parseFloat(price.replace(",", ".").replace(" €", ""));
 
@@ -185,7 +196,7 @@ function parseCartData(orderData, makeLinks) {
         } else {
             if (makeLinks == 1) {
                 parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name + '")' + "\t" + condition
-                + "\t" + finalPrice * amount + "\r\n";
+                    + "\t" + finalPrice * amount + "\r\n";
             } else {
                 parseData += amount + "\t" + name + "\t" + "\t" + finalPrice * amount + "\r\n";
             }
@@ -270,21 +281,21 @@ function getPricesQS() {
     returnVal["ck"] = 0;
     returnVal["cfb"] = 0;
 
-    $("table#thisEditionPrices tr").each(function() {
+    $("table#thisEditionPrices tr").each(function () {
         // Check for ABU
-        if ($(this).find("span.label-buylist").text().indexOf("abugames")>-1) {
+        if ($(this).find("span.label-buylist").text().indexOf("abugames") > -1) {
             var abuPrice = $(this).find("td.sorting_1").text();
             returnVal["abu"] = abuPrice;
         }
 
         // Check for CK
-        if ($(this).find("span.label-buylist").text().indexOf("cardkingdom")>-1) {
+        if ($(this).find("span.label-buylist").text().indexOf("cardkingdom") > -1) {
             var ckPrice = $(this).find("td.sorting_1").text();
             returnVal["ck"] = ckPrice;
         }
 
         // Check for CFB
-        if ($(this).find("span.label-buylist").text().indexOf("channelfireball")>-1) {
+        if ($(this).find("span.label-buylist").text().indexOf("channelfireball") > -1) {
             var cfbPrice = $(this).find("td.sorting_1").text();
             returnVal["cfb"] = cfbPrice;
         }
@@ -292,3 +303,4 @@ function getPricesQS() {
 
     return returnVal;
 }
+
