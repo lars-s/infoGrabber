@@ -1,5 +1,66 @@
-var bulkThreshold = 0.03;
+var bulkThreshold = 0;
+function makeFlagsQSLinks(nameCol, foilCol, linkCol, priceCol = null) {
+    var linkGoldfish = "http://www.quietspeculation.com/tradertools/prices/sets/";
+    $(".MKMTable").addClass("injected"); 
 
+    $(".MKMTable tbody tr").each(function () {
+        var name = $(this).find("td:nth-child(" + nameCol + ")").find("a").attr("href");
+        name = name.replace("/en/Magic/Products/Singles/", "").replace("The", "the");
+
+        var edition, cardname;
+
+        edition = name.split("/")[0];
+        cardname = name.split("/")[1];
+
+        edition = edition.replace(/\+/g, " ");
+
+        if (edition.lastIndexOf("Magic+2015") > -1) {
+            edition += "+Core+Set";
+        }
+
+        if (edition.lastIndexOf("Magic+2014") > -1) {
+            edition += "+Core+Set";
+        }
+
+        if (edition.lastIndexOf("Commander+2013") > -1) {
+            edition += "+Edition";
+        }
+
+        if (edition.lastIndexOf("Modern+Masters+2017") > -1) {
+            edition += "+Edition";
+        }
+
+        cardname = cardname.replace(/\+/g, " ");
+
+        if (cardname.lastIndexOf("%2F") > -1) {
+            cardname = cardname.split(" %2F ")[0];
+        }
+
+        name = edition + "/" + cardname;
+        
+        var link = linkGoldfish + name;
+        
+        var foil = $(this).find("td:nth-child(" + foilCol + ")").find("span").prop("outerHTML");
+        if (foil !== undefined &&
+            foil.lastIndexOf("Foil") > 0 &&
+            edition.lastIndexOf("Promo") == -1 &&
+            edition.lastIndexOf("Prerelease") == -1) {
+
+            link += "/foil";
+        }
+        
+        if (priceCol) {
+        	var priceMKM = $(this).find("td:nth-child(" + priceCol + ")").find("div.algn-r.nowrap").text();
+        	priceMKM = priceMKM.replace(" ", "");
+        	priceMKM = priceMKM.replace(",", ".");
+        	priceMKM = priceMKM.replace("€", "");
+        	link += "?"+priceMKM;
+        }
+        
+        $(this).find("td:nth-child(" + linkCol + ")").find("a")
+            .attr("href", link);
+    });
+}
 
 function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
     var linkGoldfish = "https://www.mtggoldfish.com/price/";
@@ -7,7 +68,7 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
 
     $(".MKMTable tbody tr").each(function () {
         var name = $(this).find("td:nth-child(" + nameCol + ")").find("a").attr("href");
-        name = name.replace("/Products/Singles/", "").replace("The", "the");
+        name = name.replace("/en/Magic/Products/Singles/", "").replace("The", "the");
 
         var edition, cardname;
 
@@ -73,7 +134,9 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
     });
 }
 
-function parseCartData(orderData) {
+function parseCartData(orderData, makeLinks) {
+    // workaround to have default parameter value 1
+    makeLinks = (typeof makeLinks !== 'undefined') ?  makeLinks : 1;
     var parseData = '';
     var shippingCost = $(".MKMShipmentSummary > tbody tr:nth-child(7)").find(".shipmentSummaryMoney").text();
     var numberOfCards = parseInt($(".MKMShipmentSummary > tbody tr:nth-child(4)").find("td:nth-child(2)").text());
@@ -114,8 +177,12 @@ function parseCartData(orderData) {
                 bulkRareCost += finalPrice;
             }
         } else {
-            parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name + '")' + "\t" + condition
+            if (makeLinks == 1) {
+                parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name + '")' + "\t" + condition
                 + "\t" + finalPrice * amount + "\r\n";
+            } else {
+                parseData += amount + "\t" + name + "\t" + "\t" + finalPrice * amount + "\r\n";
+            }
         }
     });
 
@@ -186,6 +253,35 @@ function getPrices() {
         price = price.replace(/[^\d.-]/g, '');
 
         returnVal[vendor] = price;
+    });
+
+    return returnVal;
+}
+
+function getPricesQS() {
+    var returnVal = [];
+    returnVal["abu"] = 0;
+    returnVal["ck"] = 0;
+    returnVal["cfb"] = 0;
+
+    $("table#thisEditionPrices tr").each(function() {
+        // Check for ABU
+        if ($(this).find("span.label-buylist").text().indexOf("abugames")>-1) {
+            var abuPrice = $(this).find("td.sorting_1").text();
+            returnVal["abu"] = abuPrice;
+        }
+
+        // Check for CK
+        if ($(this).find("span.label-buylist").text().indexOf("cardkingdom")>-1) {
+            var ckPrice = $(this).find("td.sorting_1").text();
+            returnVal["ck"] = ckPrice;
+        }
+
+        // Check for CFB
+        if ($(this).find("span.label-buylist").text().indexOf("channelfireball")>-1) {
+            var cfbPrice = $(this).find("td.sorting_1").text();
+            returnVal["cfb"] = cfbPrice;
+        }
     });
 
     return returnVal;
