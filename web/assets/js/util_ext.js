@@ -1,5 +1,4 @@
-
-function appendPriceData(linkCol, priceCol, userId, condCol) {
+function appendPriceData(linkCol, priceCol, userId, condCol, autoMode = false) {
     var price, oldLink, conditionMod;
 
     $(".MKMTable").each(function() {
@@ -21,12 +20,26 @@ function appendPriceData(linkCol, priceCol, userId, condCol) {
 			}
         }
 
+		var auto;
+		if (autoMode) {
+			auto = "&auto";
+		} else {
+			auto = "";
+		}
 
         oldLink = $(this).find("td:nth-child("+linkCol+") > a").attr("href");
 
         $(this).find("td:nth-child("+linkCol+")")
         	.find("a")
-        	.attr("href", oldLink+"?"+userId+"&"+price+"&"+conditionMod);
+        	.attr("href", oldLink+"?"+userId+"&"+price+"&"+conditionMod+auto);
        });
     });
 }
+
+$(".filterBox").on("click", "span.automode", function() {
+	$(this).toggleClass("active");
+})
+
+$(".filterBox").on("click", ".btn", function() {
+	$(".injected").removeClass("injected");
+})
