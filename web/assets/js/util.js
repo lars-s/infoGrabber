@@ -200,7 +200,7 @@ function parseCartData(orderData, makeLinks) {
         } else {
             if (makeLinks == 1) {
                 parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name + '")' + "\t" + condition
-                    + "\t" + finalPrice * amount + "\r\n";
+                    + "\t" + finalPrice + "\r\n";
             } else {
                 parseData += amount + "\t" + name + "\t" + "\t" + finalPrice * amount + "\r\n";
             }
