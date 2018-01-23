@@ -110,7 +110,7 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
             edition += "+Edition";
         }
 
-        if (edition.lastIndexOf("Modern+Masters+20") > -1) {
+        if (edition.lastIndexOf("Modern+Masters+2017") > -1) {
             edition += "+Edition";
         }
 
