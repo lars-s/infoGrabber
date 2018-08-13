@@ -1,68 +1,5 @@
 var bulkThreshold = 0;
 
-function makeFlagsQSLinks(nameCol, foilCol, linkCol, priceCol) {
-    var linkGoldfish = "http://www.quietspeculation.com/tradertools/prices/sets/";
-    $(".MKMTable").addClass("injected");
-
-    $(".MKMTable tbody tr").each(function () {
-        var name = $(this).find("td:nth-child(" + nameCol + ")").find("a").attr("href");
-        name = name.replace("/en/Magic/Products/Singles/", "").replace("Æ", "Ae");
-
-        var edition, cardname;
-
-        edition = name.split("/")[0];
-        cardname = name.split("/")[1];
-
-        edition = edition.replace(/\+/g, " ");
-
-        if (edition.lastIndexOf("Magic+2015") > -1) {
-            edition += "+Core+Set";
-        }
-
-        if (edition.lastIndexOf("Magic+2014") > -1) {
-            edition += "+Core+Set";
-        }
-
-        if (edition.lastIndexOf("Commander+2013") > -1) {
-            edition += "+Edition";
-        }
-
-        if (edition.lastIndexOf("Modern+Masters+2017") > -1) {
-            edition += "+Edition";
-        }
-
-        cardname = cardname.replace(/\+/g, " ");
-
-        if (cardname.lastIndexOf("%2F") > -1) {
-            cardname = cardname.split(" %2F ")[0];
-        }
-
-        name = edition + "/" + cardname;
-
-        var link = linkGoldfish + name;
-
-        var foil = $(this).find("td:nth-child(" + foilCol + ")").find("span").prop("outerHTML");
-        if (foil !== undefined &&
-            foil.lastIndexOf("Foil") > 0 &&
-            edition.lastIndexOf("Promo") == -1 &&
-            edition.lastIndexOf("Prerelease") == -1) {
-
-            link += "/foil";
-        }
-
-        if (priceCol) {
-            var priceMKM = $(this).find("td:nth-child(" + priceCol + ")").find("div.algn-r.nowrap").text();
-            priceMKM = priceMKM.replace(" ", "");
-            priceMKM = priceMKM.replace(",", ".");
-            priceMKM = priceMKM.replace("€", "");
-            link += "?" + priceMKM;
-        }
-
-        $(this).find("td:nth-child(" + linkCol + ")").find("a")
-            .attr("href", link);
-    });
-}
-
 function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
     var linkGoldfish = "https://www.mtggoldfish.com/price/";
     $(".MKMTable").addClass("injected");
@@ -91,6 +28,7 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
         edition = edition.replace("the+Dark", "The+Dark");
         edition = edition.replace("theros", "Theros");
         edition = edition.replace("Player+Rewards+Promos", "Magic+Player+Rewards");
+        edition = edition.replace("Core+2019", "Core+Set+2019");
 
         // check for Timeshifted cards
         var rarity = $(this).find("td:nth-child(" + parseInt(linkCol - 1) + ")").find("span").attr("onmouseover");
