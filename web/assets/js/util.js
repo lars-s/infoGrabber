@@ -66,6 +66,10 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
         if (cardname.lastIndexOf("%2F") > -1) {
             cardname = cardname.split("+%2F+")[0];
         }
+        
+        // Replace + with - due to new link generation style of MKM and remove duplicate minuses
+        cardname = cardname.replace("+", "-");
+        cardname = cardname.replace("--", "-");
 
         var foil = $(this).find("td:nth-child(" + foilCol + ")").find("span").prop("outerHTML");
         if (foil !== undefined &&
