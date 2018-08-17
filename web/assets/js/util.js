@@ -69,7 +69,7 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
         
         // Replace + with - due to new link generation style of MKM and remove duplicate minuses
         cardname = cardname.replace(/-/, "+");
-        cardname = cardname.replace(/++/, "+"); console.log("FUCK OFF");
+        cardname = cardname.replace(/\+\+/, "+"); console.log("FUCK OFF");
 
         var foil = $(this).find("td:nth-child(" + foilCol + ")").find("span").prop("outerHTML");
         if (foil !== undefined &&
