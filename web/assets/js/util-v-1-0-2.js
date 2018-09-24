@@ -58,6 +58,8 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
 
         cardname = cardname.replace("%2C", "");
         cardname = cardname.replace("%27", "");
+        cardname = cardname.replace("'", "");
+        cardname = cardname.replace(",", "");
         cardname = cardname.replace("+%28Version+1%29", "-A");
         cardname = cardname.replace("+%28Version+2%29", "-B");
         cardname = cardname.replace("+%28Version+3%29", "-C");
