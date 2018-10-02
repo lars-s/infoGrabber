@@ -11,7 +11,7 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
         var edition, cardname;
 
         edition = name.split("/")[0];
-        cardname = name.split("/")[1];
+        cardname = $(this).find("td:nth-child(" + nameCol + ")").find("a").text();
 
         edition = edition.replace("%27", "");
         edition = edition.replace("%2C", "");
@@ -64,6 +64,8 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
         cardname = cardname.replace("+%28Version+2%29", "-B");
         cardname = cardname.replace("+%28Version+3%29", "-C");
         cardname = cardname.replace("%2F%2F+", "");
+        cardname = cardname.replace("Æ", "Ae");
+        cardname = cardname.replace(" ", "-");
 
         if (cardname.lastIndexOf("%2F") > -1) {
             cardname = cardname.split("+%2F+")[0];
@@ -71,7 +73,7 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
         
         // Replace + with - due to new link generation style of MKM and remove duplicate minuses
         cardname = cardname.replace(/-/g, "+");
-        cardname = cardname.replace(/\+\+/g, "+"); console.log("FUCK OFF");
+        cardname = cardname.replace(/\+\+/g, "+"); 
 
         var foil = $(this).find("td:nth-child(" + foilCol + ")").find("span").prop("outerHTML");
         if (foil !== undefined &&
