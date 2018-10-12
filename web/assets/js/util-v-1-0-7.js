@@ -41,11 +41,11 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
         }
         
         if (edition.lastIndexOf("Commander+Anthology+II") > -1) {
-            edition += "+Core+Set";
+            edition = "Commander+Anthology+Volume+II";
         }
 
         if (edition.lastIndexOf("Magic+2014") > -1) {
-            edition = "Commander+Anthology+Volume+II";
+            edition += "+Core+Set";
         }
 
         if (edition.lastIndexOf("Commander+2013") > -1) {
