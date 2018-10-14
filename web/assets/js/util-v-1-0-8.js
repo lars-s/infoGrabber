@@ -19,16 +19,16 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
         edition = edition.replace("%3A", "");
         edition = edition.replace("%3A", "");
         edition = edition.replace("%26", "and");
-        edition = edition.replace("Sixth+Edition", "Classic+Sixth+Edition");
-        edition = edition.replace("Revised", "Revised+Edition");
-        edition = edition.replace("Prerelease+Promos", "Prerelease+Cards");
-        edition = edition.replace("Arena+League+Promos", "Arena+Promos");
-        edition = edition.replace("Release+Promos", "Release+Event+Cards");
-        edition = edition.replace("Buy+a+Box+Promos", "Media+Promos");
-        edition = edition.replace("the+Dark", "The+Dark");
+        edition = edition.replace("Sixth-Edition", "Classic-Sixth-Edition");
+        edition = edition.replace("Revised", "Revised-Edition");
+        edition = edition.replace("Prerelease-Promos", "Prerelease-Cards");
+        edition = edition.replace("Arena-League-Promos", "Arena+Promos");
+        edition = edition.replace("Release-Promos", "Release-Event-Cards");
+        edition = edition.replace("Buy-a-Box-Promos", "Media-Promos");
+        edition = edition.replace("the-Dark", "The-Dark");
         edition = edition.replace("theros", "Theros");
-        edition = edition.replace("Player+Rewards+Promos", "Magic+Player+Rewards");
-        edition = edition.replace("Core+2019", "Core+Set+2019");
+        edition = edition.replace("Player-Rewards-Promos", "Magic-Player-Rewards");
+        edition = edition.replace("Core-2019", "Core-Set-2019");
 
         // check for Timeshifted cards
         var rarity = $(this).find("td:nth-child(" + parseInt(linkCol - 1) + ")").find("span").attr("onmouseover");
@@ -36,28 +36,28 @@ function makeFlagsGoldfishLinks(nameCol, foilCol, linkCol) {
             edition = "Timeshifted"
         }
 
-        if (edition.lastIndexOf("Magic+2015") > -1) {
-            edition += "+Core+Set";
+        if (edition.lastIndexOf("Magic-2015") > -1) {
+            edition += "-Core-Set";
         }
         
-        if (edition.lastIndexOf("Commander+Anthology+II") > -1) {
-            edition = "Commander+Anthology+Volume+II";
+        if (edition.lastIndexOf("Commander-Anthology-II") > -1) {
+            edition = "Commander-Anthology-Volume-II";
         }
 
-        if (edition.lastIndexOf("Magic+2014") > -1) {
-            edition += "+Core+Set";
+        if (edition.lastIndexOf("Magic-2014") > -1) {
+            edition += "-Core-Set";
         }
 
-        if (edition.lastIndexOf("Commander+2013") > -1) {
-            edition += "+Edition";
+        if (edition.lastIndexOf("Commander-2013") > -1) {
+            edition += "-Edition";
         }
 
-        if (edition.lastIndexOf("Modern+Masters+2017") > -1) {
-            edition += "+Edition";
+        if (edition.lastIndexOf("Modern-Masters-2017") > -1) {
+            edition += "-Edition";
         }
 
-        if (edition.lastIndexOf("Planechase+2012") > -1) {
-            edition += "+Edition";
+        if (edition.lastIndexOf("Planechase-2012") > -1) {
+            edition += "-Edition";
         }
 
         edition = edition.replace(/-/g, "+");
