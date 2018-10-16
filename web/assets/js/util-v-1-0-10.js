@@ -259,7 +259,7 @@ function getPricesQS() {
     return returnVal;
 }
 
-var data = [{id="2345", edition="3rd Edition"},
+var setData = [{id="2345", edition="3rd Edition"},
 {id="2350", edition="4th Edition"},
 {id="2355", edition="5th Edition"},
 {id="2360", edition="6th Edition"},
