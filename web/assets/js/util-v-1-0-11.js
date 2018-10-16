@@ -258,11 +258,6 @@ function getPricesQS() {
 
     return returnVal;
 }
-function checkSimilarity(){
-  var str1 = document.getElementById("lhsInput").value;
-  var str2 = document.getElementById("rhsInput").value;
-  document.getElementById("output").innerHTML = similarity(str1, str2);
-}
 
 function similarity(s1, s2) {
       var longer = s1;
