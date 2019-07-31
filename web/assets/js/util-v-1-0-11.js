@@ -169,7 +169,90 @@ function parseCartData(orderData, makeLinks) {
     copyTextToClipboard(parseData);
     return parseData;
 }
+function parseCartDatat(orderData, makeLinks) {
+    // workaround to have default parameter value 1
+    makeLinks = (typeof makeLinks !== 'undefined') ? makeLinks : 1;
+    var parseData = '';
+    var shippingCost = $(".summary").data("total-price")-$(".summary").data("item-value");
+    shippingCost = parseFloat(shippingCost);
+    
+    var numberOfCards = $(".summary").data("article-count");
+    var bulkRareCost = 0, bulkFoilCost = 0, bulkRare = 0, bulkFoil = 0;
+    var sumCost = $(".summary").data("total-price");
 
+    
+    $(orderData).find("tr").each(function () {
+        var name = $(this).data("name");
+        
+        // MKM link
+        //var link = $(this).find(".name").find("a").attr("href");
+        
+        var price, amount;
+        var condition = 1;
+        
+        var foil, nonfoil;
+        if ($(this).find("span[data-original-title='Foil']").data("original-title") === 'Foil') {
+            foil = "&filter%5Bfoil%5D=1";
+            nonfoil = "";
+        } else {
+        	foil = "";
+        	nonfoil = "&filter%5Bnonfoil%5D=1";
+        }
+        
+        // try guessing the set
+        
+        
+        // try CK link generation
+        var link = "https://www.cardkingdom.com/purchasing/mtg_singles/?filter%5Bsort%5D=price_desc&filter%5Bsearch%5D=mtg_advanced&filter%5Bname%5D="+name+"&filter%5Bcategory_id%5D=0"+foil+nonfoil+"&filter%5Bprice_op%5D=&filter%5Bprice%5D=";
+        
+        
+        var conditionText = $(this).find("a.grade").data("original-title");
+
+        if (conditionText !== undefined) {
+            if (conditionText.indexOf("Near Mint") > -1) {
+                condition = 1;
+            } else if (conditionText.indexOf("Excellent") > -1) {
+                condition = 0.8;
+            } else if (conditionText.indexOf("Good") > -1) {
+                condition = 0.6;
+            }
+        }
+        price = $(this).find(".price").text();
+        price = parseFloat(price.replace(",", ".").replace(" €", ""));
+
+        amount = $(this).find(".amount").data("amount");
+
+        var finalPrice = price + ((((price * amount) / sumCost) * shippingCost)) / amount;
+
+        if (parseFloat(price) <= bulkThreshold) {
+            if (foil) {
+                bulkFoil += 1 * amount;
+                bulkFoilCost += finalPrice;
+            } else {
+                bulkRare += 1 * amount;
+                bulkRareCost += finalPrice;
+            }
+        } else {
+            if (makeLinks == 1) {
+                parseData += amount + "\t" + '=HYPERLINK("' + link + '", "' + name + '")' + "\t" + condition
+                    + "\t" + finalPrice + "\r\n";
+            } else {
+                parseData += amount + "\t" + name + "\t" + "\t" + finalPrice * amount + "\r\n";
+            }
+        }
+    });
+
+    if (bulkFoil > 0) {
+        parseData += bulkFoil + "\t" + "Bulk Foils" + "\t" + bulkFoilCost + "\r\n";
+    }
+
+    if (bulkRare > 0) {
+        parseData += bulkRare + "\t" + "Bulk Rares" + "\t" + bulkRareCost + "\r\n";
+    }
+
+    copyTextToClipboard(parseData);
+    return parseData;
+}
 function copyTextToClipboard(text) {
     var textArea = document.createElement("textarea");
 
