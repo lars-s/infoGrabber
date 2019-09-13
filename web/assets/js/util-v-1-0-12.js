@@ -50,6 +50,7 @@ var setData = [
 	{ckid:'2949', mkmid:'1719', edition:'Commander 2016'},
 	{ckid:'3055', mkmid:'1813', edition:'Commander 2017'},
 	{ckid:'3100', mkmid:'2110', edition:'Commander 2018'},
+	{ckid:'3136', mkmid:'2448', edition:'Commander 2019'},
 	{ckid:'3047', mkmid:'1732', edition:'Commander Anthology'},
 	{ckid:'3089', mkmid:'2109', edition:'Commander Anthology II'},
 	{ckid:'2888', mkmid:'1418', edition:'Commander\'s Arsenal'},
